@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header } from '../header/header';
-import { Companies } from '../companies/companies';
-import { Employees } from '../employees/employees';
+import { CompaniesTable } from '../companies-table/companies-table';
+import { EmployeesTable } from '../employees/employees-table';
 import './list-companies.scss';
 
 export const ListCompanies = () => {
@@ -9,8 +9,8 @@ export const ListCompanies = () => {
     <div className="list-companies">
       <Header />
       <div className='main-content'>
-        <Companies />
-        <Employees />
+        <CompaniesTable />
+        <EmployeesTable />
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
-import './employees.scss';
+import './employees-table.scss';
 
-export const Employees = () => {
+export const EmployeesTable = () => {
   return (
     <div className="employees-container">
       Employees

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListCompanies } from '../list-companies/list-companies';
-import './App.css';
+import './App.scss';
 
 const App = () => {
   return (
