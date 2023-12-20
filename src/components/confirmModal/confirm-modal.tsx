@@ -2,7 +2,8 @@ import { ReactElement, useCallback, useEffect } from 'react';
 import './confirm-modal.scss';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { selectorConfirmModalState, selectorCurrId } from '../../redux/selectors';
-import { deleteElement, toogleConfirmModalState } from '../../redux/companies';
+import { deleteElement, saveCurrId, toogleConfirmModalState } from '../../redux/companies';
+import { IoCloseSharp } from "react-icons/io5";
 
 export const ConfirmModal = (): ReactElement => {
   const dispatch = useAppDispatch();
@@ -12,12 +13,19 @@ export const ConfirmModal = (): ReactElement => {
   const onConfirmDelete = useCallback((): void => {
     dispatch(deleteElement(currId));
     dispatch(toogleConfirmModalState(confirmModalState));
+    dispatch(saveCurrId(0));
   }, [currId, dispatch, confirmModalState]);
+
+  const onCloseConfirmModal = () => {
+    dispatch(saveCurrId(0));
+    dispatch(toogleConfirmModalState(confirmModalState));
+  };
 
   const onEsc = useCallback((e: any) => {
     if (e.key !== 'Escape') {
       return;
     }
+    dispatch(saveCurrId(0));
     dispatch(toogleConfirmModalState(confirmModalState));
   }, [dispatch, confirmModalState]);
 
@@ -38,7 +46,10 @@ export const ConfirmModal = (): ReactElement => {
           </h2>
           <button
             className='confirm-modal__close-button'
-            onClick={() => dispatch(toogleConfirmModalState(confirmModalState))} />
+            onClick={() => onCloseConfirmModal()}
+          >
+            <IoCloseSharp className='confirm-modal__close-icon' />
+          </button>
         </div>
         <div className='confirm-modal-content'>
           Вы точно хотите удалить запись?
@@ -53,7 +64,7 @@ export const ConfirmModal = (): ReactElement => {
           <button
             className='confirm-modal__button'
             type='button'
-            onClick={() => dispatch(toogleConfirmModalState(confirmModalState))}>
+            onClick={() => onCloseConfirmModal()}>
             Отмена
           </button>
         </div>

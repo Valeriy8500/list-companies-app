@@ -1,21 +1,28 @@
 import { useCallback, useMemo } from 'react';
 import { FiPlusCircle } from "react-icons/fi";
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { saveCurrId, toogleConfirmModalState } from '../../redux/companies';
-import { selectorCompanies, selectorConfirmModalState } from '../../redux/selectors';
+import { saveCurrId, toogleCompaniesDetailsState, toogleConfirmModalState } from '../../redux/companies';
+import { selectorCompanies, selectorCompaniesDetailsState, selectorConfirmModalState } from '../../redux/selectors';
 import { ICompaniesData } from '../../types/types';
 import { ConfirmModal } from '../confirmModal/confirm-modal';
 import './companies-table.scss';
+import { CompaniesDetails } from '../companies-details/companies-details';
 
 export const CompaniesTable = () => {
   const dispatch = useAppDispatch();
   const companies = useAppSelector(selectorCompanies);
   const confirmModalState = useAppSelector(selectorConfirmModalState);
+  const companiesDetailsState = useAppSelector(selectorCompaniesDetailsState);
 
-  const onDeletebtn = useCallback((id: number): void => {
+  const onDeleteBtn = useCallback((id: number): void => {
     dispatch(toogleConfirmModalState(confirmModalState));
     dispatch(saveCurrId(id));
   }, [confirmModalState, dispatch]);
+
+  const onEditBtn = useCallback((id: number): void => {
+    dispatch(toogleCompaniesDetailsState(companiesDetailsState));
+    dispatch(saveCurrId(id));
+  }, [companiesDetailsState, dispatch]);
 
   const companiesRowTable = useMemo(() => {
     return companies.map((item: ICompaniesData) => {
@@ -33,27 +40,27 @@ export const CompaniesTable = () => {
               className='companies-container__show-btn far fa-edit'
               type='button'
               title='Редактировать'
-              onClick={() => console.log('Редактировать')}
+              onClick={() => onEditBtn(item.id)}
             />
             <button
               id={String(item.id)}
               className='companies-container__del-btn far fa-trash-alt'
               type='button'
               title='Удалить'
-              onClick={() => onDeletebtn(item.id)}
+              onClick={() => onDeleteBtn(item.id)}
             />
           </div>
         </li>
       )
     });
-  }, [companies, onDeletebtn]);
+  }, [companies, onDeleteBtn, onEditBtn]);
 
   return (
     <>
       <div className="companies-container">
         <button
           className='companies-container__add-button'
-          onClick={() => console.log('Добавить')}>
+          onClick={() => dispatch(toogleCompaniesDetailsState(companiesDetailsState))}>
           <FiPlusCircle className='companies-container__icon-plus' />
           Добавить
         </button>
@@ -72,9 +79,8 @@ export const CompaniesTable = () => {
         </ul>
       </div>
 
-      {
-        confirmModalState && <ConfirmModal />
-      }
+      {companiesDetailsState && <CompaniesDetails />}
+      {confirmModalState && <ConfirmModal />}
     </>
   );
 }

@@ -8,6 +8,10 @@ export const selectorConfirmModalState = (state: RootState): any => (
   state.companies.confirmModalState
 );
 
+export const selectorCompaniesDetailsState = (state: RootState): any => (
+  state.companies.companiesDetailsState
+);
+
 export const selectorCurrId = (state: RootState): any => (
   state.companies.currId
 );

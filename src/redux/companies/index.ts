@@ -7,5 +7,6 @@ export const {
   editElement,
   deleteElement,
   toogleConfirmModalState,
+  toogleCompaniesDetailsState,
   saveCurrId
 } = companiesSlice.actions;
