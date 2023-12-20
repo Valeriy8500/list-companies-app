@@ -2,7 +2,9 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { companiesData } from "../../constans/constans";
 
 const initialState = {
-  elements: companiesData
+  elements: companiesData,
+  confirmModalState: false,
+  currId: 0
 };
 
 export const companiesSlice = createSlice({
@@ -16,8 +18,16 @@ export const companiesSlice = createSlice({
       state.elements = state.elements.filter(item => item.id !== action.payload);
     },
     deleteElement(state, action: PayloadAction<any>) {
-      console.log('deleteElement: ', state.elements);
       state.elements = state.elements.filter(item => item.id !== action.payload);
+    },
+    toogleConfirmModalState(state, action: PayloadAction<any>) {
+      // state.elements = state.elements.filter(item => item.id !== action.payload);
+      console.log('toogleConfirmModalState');
+      state.confirmModalState = !state.confirmModalState;
+    },
+    saveCurrId(state, action: PayloadAction<any>) {
+      // state.elements = state.elements.filter(item => item.id !== action.payload);
+      state.currId = action.payload;
     },
   }
 });

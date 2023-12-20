@@ -1,30 +1,23 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import { FiPlusCircle } from "react-icons/fi";
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { deleteElement } from '../../redux/companies';
-import { selectorCompanies } from '../../redux/selectors';
+import { saveCurrId, toogleConfirmModalState } from '../../redux/companies';
+import { selectorCompanies, selectorConfirmModalState } from '../../redux/selectors';
 import { ICompaniesData } from '../../types/types';
 import { ConfirmModal } from '../confirmModal/confirm-modal';
 import './companies-table.scss';
 
 export const CompaniesTable = () => {
-  const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
-  const [currId, setCurrId] = useState<number>(0);
-
   const dispatch = useAppDispatch();
   const companies = useAppSelector(selectorCompanies);
+  const confirmModalState = useAppSelector(selectorConfirmModalState);
 
   const onDeletebtn = useCallback((id: number): void => {
-    setShowConfirmModal(prev => !prev);
-    setCurrId(id);
-  }, []);
+    dispatch(toogleConfirmModalState(confirmModalState));
+    dispatch(saveCurrId(id));
+  }, [confirmModalState, dispatch]);
 
-  const onConfirmDelete = useCallback((): void => {
-    dispatch(deleteElement(currId));
-    setShowConfirmModal(prev => !prev);
-  }, [currId, dispatch]);
-
-  const companiesRowTable = React.useMemo(() => {
+  const companiesRowTable = useMemo(() => {
     return companies.map((item: ICompaniesData) => {
       return (
         <li className='companies-container__item' key={item.id}>
@@ -80,10 +73,7 @@ export const CompaniesTable = () => {
       </div>
 
       {
-        showConfirmModal &&
-        <ConfirmModal
-          setShowConfirmModal={setShowConfirmModal}
-          onConfirmDelete={onConfirmDelete} />
+        confirmModalState && <ConfirmModal />
       }
     </>
   );

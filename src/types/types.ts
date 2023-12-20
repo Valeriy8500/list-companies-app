@@ -4,8 +4,3 @@ export interface ICompaniesData {
   employeesCount: number;
   companyAddress: string;
 }
-
-export interface IConfirmModalProps {
-  setShowConfirmModal: React.Dispatch<React.SetStateAction<boolean>>;
-  onConfirmDelete: () => void;
-}

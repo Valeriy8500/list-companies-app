@@ -1,20 +1,25 @@
 import { ReactElement, useCallback, useEffect } from 'react';
-import { IConfirmModalProps } from '../../types/types';
 import './confirm-modal.scss';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { selectorConfirmModalState, selectorCurrId } from '../../redux/selectors';
+import { deleteElement, toogleConfirmModalState } from '../../redux/companies';
 
-export const ConfirmModal = (props: IConfirmModalProps): ReactElement => {
+export const ConfirmModal = (): ReactElement => {
+  const dispatch = useAppDispatch();
+  const confirmModalState = useAppSelector(selectorConfirmModalState);
+  const currId = useAppSelector(selectorCurrId);
 
-  const {
-    setShowConfirmModal,
-    onConfirmDelete
-  } = props;
+  const onConfirmDelete = useCallback((): void => {
+    dispatch(deleteElement(currId));
+    dispatch(toogleConfirmModalState(confirmModalState));
+  }, [currId, dispatch, confirmModalState]);
 
   const onEsc = useCallback((e: any) => {
     if (e.key !== 'Escape') {
       return;
     }
-    setShowConfirmModal(prev => !prev);
-  }, [setShowConfirmModal]);
+    dispatch(toogleConfirmModalState(confirmModalState));
+  }, [dispatch, confirmModalState]);
 
   useEffect(() => {
     document.addEventListener('keydown', onEsc);
@@ -33,7 +38,7 @@ export const ConfirmModal = (props: IConfirmModalProps): ReactElement => {
           </h2>
           <button
             className='confirm-modal__close-button'
-            onClick={() => setShowConfirmModal(prev => !prev)} />
+            onClick={() => dispatch(toogleConfirmModalState(confirmModalState))} />
         </div>
         <div className='confirm-modal-content'>
           Вы точно хотите удалить запись?
@@ -48,7 +53,7 @@ export const ConfirmModal = (props: IConfirmModalProps): ReactElement => {
           <button
             className='confirm-modal__button'
             type='button'
-            onClick={() => setShowConfirmModal(prev => !prev)}>
+            onClick={() => dispatch(toogleConfirmModalState(confirmModalState))}>
             Отмена
           </button>
         </div>
