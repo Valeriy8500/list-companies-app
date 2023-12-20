@@ -1,0 +1,128 @@
+.companies-container {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+
+  .companies-container__add-button {
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    width: 160px;
+    height: 36px;
+    background-color: #4587ED;
+    border: none;
+    color: #ffffff;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    align-self: flex-start;
+    margin-bottom: 20px;
+
+    .companies-container__icon-plus {
+      width: 25px;
+      height: 25px;
+      margin-right: 10px;
+      color: #ffffff;
+      opacity: 0.8;
+    }
+  }
+
+  .companies-container__add-button:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+  .companies-container__list {
+    list-style-type: none;
+
+    .companies-container__item {
+      width: 100%;
+      min-height: 40px;
+      display: grid;
+      grid-template-columns: 2fr 2fr 2fr 2fr 1fr;
+      background-color: #ffffff;
+      border-radius: 6px;
+      margin-bottom: 4px;
+      align-items: center;
+      padding-left: 32px;
+      padding-right: 32px;
+
+      .companies-container__item-el {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+        color: #353D4B;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        .companies-container__checkbox {
+          margin-right: 10px;
+          width: 15px;
+          height: 15px;
+        }
+      }
+
+      .companies-container__item-el:nth-child(1) {
+        display: flex;
+        align-items: center;
+      }
+
+      .companies-container__buttons-block {
+        justify-self: end;
+
+        .companies-container__show-btn {
+          width: 30px;
+          height: 30px;
+          border: none;
+          background-color: white;
+          font-weight: 600;
+          font-size: 20px;
+          color: #353D4B;
+        }
+
+        .companies-container__show-btn:hover,
+        .companies-container__del-btn:hover {
+          cursor: pointer;
+          opacity: 0.6;
+        }
+
+        .companies-container__del-btn {
+          width: 30px;
+          height: 30px;
+          border: none;
+          background-color: white;
+          font-weight: 600;
+          font-size: 20px;
+          color: #353D4B;
+        }
+      }
+    }
+
+    .companies-container__item:first-child .companies-container__item-el {
+      font-family: 'Roboto', Arial, sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 20px;
+      color: #353D4B;
+      display: flex;
+      align-items: center;
+    }
+
+    .companies-container__item:first-child {
+      min-height: 40px;
+    }
+
+    .companies-container__item:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

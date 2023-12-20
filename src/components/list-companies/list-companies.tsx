@@ -1,4 +1,3 @@
-import React from 'react';
 import { Header } from '../header/header';
 import { CompaniesTable } from '../companies-table/companies-table';
 import { EmployeesTable } from '../employees/employees-table';

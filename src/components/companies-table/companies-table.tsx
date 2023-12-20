@@ -1,14 +1,36 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
+import { FiPlusCircle } from "react-icons/fi";
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { deleteElement } from '../../redux/companies';
+import { selectorCompanies } from '../../redux/selectors';
+import { ICompaniesData } from '../../types/types';
+import { ConfirmModal } from '../confirmModal/confirm-modal';
 import './companies-table.scss';
-import { companiesData } from '../../constans/constans';
 
 export const CompaniesTable = () => {
+  const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
+  const [currId, setCurrId] = useState<number>(0);
+
+  const dispatch = useAppDispatch();
+  const companies = useAppSelector(selectorCompanies);
+
+  const onDeletebtn = useCallback((id: number): void => {
+    setShowConfirmModal(prev => !prev);
+    setCurrId(id);
+  }, []);
+
+  const onConfirmDelete = useCallback((): void => {
+    dispatch(deleteElement(currId));
+    setShowConfirmModal(prev => !prev);
+  }, [currId, dispatch]);
 
   const companiesRowTable = React.useMemo(() => {
-    return companiesData.map((item) => {
+    return companies.map((item: ICompaniesData) => {
       return (
         <li className='companies-container__item' key={item.id}>
-          <span className='companies-container__item-el'>Чекбокс</span>
+          <span className='companies-container__item-el'>
+            <input type='checkbox' className='companies-container__checkbox' />
+          </span>
           <span className='companies-container__item-el'>{item.companyName}</span>
           <span className='companies-container__item-el'>{item.employeesCount}</span>
           <span className='companies-container__item-el' title={item.companyAddress}>{item.companyAddress}</span>
@@ -25,25 +47,44 @@ export const CompaniesTable = () => {
               className='companies-container__del-btn far fa-trash-alt'
               type='button'
               title='Удалить'
-              onClick={() => console.log('Удалить')}
+              onClick={() => onDeletebtn(item.id)}
             />
           </div>
         </li>
       )
     });
-  }, []);
+  }, [companies, onDeletebtn]);
 
   return (
-    <div className="companies-container">
-      <ul className='companies-container__list'>
-        <li className='companies-container__item'>
-          <span className='companies-container__item-el'>Выделить всё</span>
-          <span className='companies-container__item-el'>Название компании</span>
-          <span className='companies-container__item-el'>Кол-во сотрудников</span>
-          <span className='companies-container__item-el'>Адрес</span>
-        </li>
-        {companiesRowTable}
-      </ul>
-    </div>
+    <>
+      <div className="companies-container">
+        <button
+          className='companies-container__add-button'
+          onClick={() => console.log('Добавить')}>
+          <FiPlusCircle className='companies-container__icon-plus' />
+          Добавить
+        </button>
+
+        <ul className='companies-container__list'>
+          <li className='companies-container__item'>
+            <span className='companies-container__item-el'>
+              <input type='checkbox' className='companies-container__checkbox' />
+              Выделить всё
+            </span>
+            <span className='companies-container__item-el'>Название компании</span>
+            <span className='companies-container__item-el'>Кол-во сотрудников</span>
+            <span className='companies-container__item-el'>Адрес</span>
+          </li>
+          {companiesRowTable}
+        </ul>
+      </div>
+
+      {
+        showConfirmModal &&
+        <ConfirmModal
+          setShowConfirmModal={setShowConfirmModal}
+          onConfirmDelete={onConfirmDelete} />
+      }
+    </>
   );
 }
