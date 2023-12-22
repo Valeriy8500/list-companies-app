@@ -44,9 +44,16 @@ export const companiesSlice = createSlice({
       state.elements.push(action.payload);
     },
     editEmployee(state, action: PayloadAction<any>) {
-      state.elements = state.elements.map(item =>
-        item.id !== action.payload.id ? item : { ...action.payload }
-      );
+      state.elements = state.elements.map(item => {
+        if (item.id === state.companiesCurrId) {
+          const editEmployees = item.employees.map(i =>
+            i.id === action.payload.id ? { ...action.payload } : i
+          );
+          return { ...item, employees: editEmployees };
+        } else {
+          return item;
+        }
+      });
     },
     deleteEmployee(state, action: PayloadAction<any>) {
       state.elements = state.elements.filter(item => item.id !== action.payload);
@@ -55,7 +62,6 @@ export const companiesSlice = createSlice({
       state.confirmEmployeesModalState = !state.confirmEmployeesModalState;
     },
     toogleEmployeeDetailsModal(state) {
-      console.log('toogleEmployeesDetailsState');
       state.employeesDetailsState = !state.employeesDetailsState;
     },
     saveEmployeeCurrId(state, action: PayloadAction<any>) {

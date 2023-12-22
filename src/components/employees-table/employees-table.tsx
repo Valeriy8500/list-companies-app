@@ -47,8 +47,6 @@ export const EmployeesTable = () => {
       return null;
     } else {
       return currEl.employees.map((item: IEmployeesData) => {
-        console.log('item.checked: ', item.checked);
-
         return (
           <li
             className={

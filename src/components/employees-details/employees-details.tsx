@@ -2,30 +2,33 @@ import React, { ReactElement, useState } from 'react';
 import { generateId } from '../../shared/shared-function';
 import { IoCloseSharp } from 'react-icons/io5';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { selectorCompanies, selectorCompaniesDetailsState, selectorEmployeesCurrId } from '../../redux/selectors';
-import { ICompaniesData } from '../../types/types';
+import { selectorCompanies, selectorCompaniesCurrId, selectorEmployeesCurrId, selectorEmployeesDetailsState } from '../../redux/selectors';
+import { ICompaniesData, IEmployeesData } from '../../types/types';
 import './employees-details.scss';
 import { addEmployee, editEmployee, saveEmployeeCurrId, toogleEmployeeDetailsModal } from '../../redux/companies';
 
 export const EmployeesDetails = (): ReactElement => {
 
   const dispatch = useAppDispatch();
-  const companiesDetailsState = useAppSelector(selectorCompaniesDetailsState);
-  const currId = useAppSelector(selectorEmployeesCurrId);
+  const employeesDetailsState = useAppSelector(selectorEmployeesDetailsState);
+  const currCompaniesId = useAppSelector(selectorCompaniesCurrId);
+  const currEmployeeId = useAppSelector(selectorEmployeesCurrId);
   const companies = useAppSelector(selectorCompanies);
-  const currEl = companies.filter((i: ICompaniesData) => i.id === currId)[0];
+  const currEmployeeEl = companies.filter((i: ICompaniesData) => i.id === currCompaniesId)[0].employees
+    .filter((i: IEmployeesData) => i.id === currEmployeeId)[0];
 
   const [value, setValue] = useState(() => {
-    const newId = generateId(companies);
+    const currEmployeesArr = companies.filter((i: ICompaniesData) => i.id === currCompaniesId)[0].employees;
+    const newId = generateId(currEmployeesArr);
 
-    if (currEl) {
-      return currEl;
+    if (currEmployeeEl) {
+      return currEmployeeEl;
     } else {
       return {
         id: newId,
-        companyName: '',
-        employeesCount: '0',
-        companyAddress: ''
+        surname: '',
+        name: '',
+        position: ''
       };
     }
   });
@@ -33,7 +36,7 @@ export const EmployeesDetails = (): ReactElement => {
 
   const onCloseCompaniesDetails = () => {
     dispatch(saveEmployeeCurrId(0));
-    dispatch(toogleEmployeeDetailsModal(companiesDetailsState));
+    dispatch(toogleEmployeeDetailsModal(employeesDetailsState));
   };
 
   const onEsc = React.useCallback((evt: any) => {
@@ -41,8 +44,8 @@ export const EmployeesDetails = (): ReactElement => {
       return;
     }
     dispatch(saveEmployeeCurrId(0));
-    dispatch(toogleEmployeeDetailsModal(companiesDetailsState));
-  }, [companiesDetailsState, dispatch]);
+    dispatch(toogleEmployeeDetailsModal(employeesDetailsState));
+  }, [employeesDetailsState, dispatch]);
 
   React.useEffect(() => {
     document.addEventListener('keydown', onEsc);
@@ -54,9 +57,9 @@ export const EmployeesDetails = (): ReactElement => {
 
   React.useEffect(() => {
     if (
-      value.companyName !== '' &&
-      value.employeesCount !== '' &&
-      value.companyAddress !== ''
+      value.surname !== '' &&
+      value.name !== '' &&
+      value.position !== ''
     ) {
       setDisabled(false);
     } else {
@@ -71,19 +74,19 @@ export const EmployeesDetails = (): ReactElement => {
     console.log('newId: ', newId);
 
     const newEl = {
-      id: currId ? currId : newId,
-      companyName: value.companyName.trim(),
-      employeesCount: String(value.employeesCount).trim(),
-      companyAddress: value.companyAddress.trim()
+      id: currEmployeeId ? currEmployeeId : value.id,
+      surname: value.surname.trim(),
+      name: value.name.trim(),
+      position: value.position.trim()
     };
 
-    if (currId) {
+    if (currEmployeeId) {
       dispatch(editEmployee(newEl));
     } else {
       dispatch(addEmployee(newEl));
     }
 
-    dispatch(toogleEmployeeDetailsModal(companiesDetailsState));
+    dispatch(toogleEmployeeDetailsModal(employeesDetailsState));
     dispatch(saveEmployeeCurrId(0));
   };
 
@@ -92,9 +95,9 @@ export const EmployeesDetails = (): ReactElement => {
     const { value } = element;
 
     if (value.trim() === '') {
-      setValue((prev: ICompaniesData) => ({ ...prev, [id]: '' }));
+      setValue((prev: IEmployeesData) => ({ ...prev, [id]: '' }));
     } else {
-      setValue((prev: ICompaniesData) => ({ ...prev, [id]: value }));
+      setValue((prev: IEmployeesData) => ({ ...prev, [id]: value }));
     }
   };
 
@@ -102,7 +105,7 @@ export const EmployeesDetails = (): ReactElement => {
     <div className="employees-details">
       <div className='employees-details__container'>
         <div className='employees-details__header'>
-          <h2 className='employees-details__title'>{currEl ? 'Редактирование сотрудника' : 'Создание сотрудника'}</h2>
+          <h2 className='employees-details__title'>{currEmployeeEl ? 'Редактирование сотрудника' : 'Создание сотрудника'}</h2>
           <button
             className='employees-details__close-button'
             onClick={() => onCloseCompaniesDetails()}
