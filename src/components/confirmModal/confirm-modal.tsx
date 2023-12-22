@@ -1,32 +1,32 @@
 import { ReactElement, useCallback, useEffect } from 'react';
-import './confirm-modal.scss';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { selectorConfirmModalState, selectorCurrId } from '../../redux/selectors';
-import { deleteElement, saveCurrId, toogleConfirmModalState } from '../../redux/companies';
+import { selectorCompaniesCurrId, selectorcConfirmCompaniesModalState } from '../../redux/selectors';
 import { IoCloseSharp } from "react-icons/io5";
+import './confirm-modal.scss';
+import { deleteCompany, saveCompanyCurrId, toogleCompanyConfirmModal } from '../../redux/companies';
 
 export const ConfirmModal = (): ReactElement => {
   const dispatch = useAppDispatch();
-  const confirmModalState = useAppSelector(selectorConfirmModalState);
-  const currId = useAppSelector(selectorCurrId);
+  const confirmModalState = useAppSelector(selectorcConfirmCompaniesModalState);
+  const currId = useAppSelector(selectorCompaniesCurrId);
 
   const onConfirmDelete = useCallback((): void => {
-    dispatch(deleteElement(currId));
-    dispatch(toogleConfirmModalState(confirmModalState));
-    dispatch(saveCurrId(0));
+    dispatch(deleteCompany(currId));
+    dispatch(toogleCompanyConfirmModal(confirmModalState));
+    dispatch(saveCompanyCurrId(0));
   }, [currId, dispatch, confirmModalState]);
 
   const onCloseConfirmModal = () => {
-    dispatch(saveCurrId(0));
-    dispatch(toogleConfirmModalState(confirmModalState));
+    dispatch(saveCompanyCurrId(0));
+    dispatch(toogleCompanyConfirmModal(confirmModalState));
   };
 
   const onEsc = useCallback((e: any) => {
     if (e.key !== 'Escape') {
       return;
     }
-    dispatch(saveCurrId(0));
-    dispatch(toogleConfirmModalState(confirmModalState));
+    dispatch(saveCompanyCurrId(0));
+    dispatch(toogleCompanyConfirmModal(confirmModalState));
   }, [dispatch, confirmModalState]);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export const ConfirmModal = (): ReactElement => {
           </button>
         </div>
         <div className='confirm-modal-content'>
-          Вы точно хотите удалить запись?
+          Вы точно хотите удалить элемент?
         </div>
         <div className='confirm-modal__footer'>
           <button

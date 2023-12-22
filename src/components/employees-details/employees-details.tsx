@@ -2,16 +2,16 @@ import React, { ReactElement, useState } from 'react';
 import { generateId } from '../../shared/shared-function';
 import { IoCloseSharp } from 'react-icons/io5';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { selectorCompanies, selectorCompaniesCurrId, selectorCompaniesDetailsState } from '../../redux/selectors';
+import { selectorCompanies, selectorCompaniesDetailsState, selectorEmployeesCurrId } from '../../redux/selectors';
 import { ICompaniesData } from '../../types/types';
-import './companies-details.scss';
-import { addCompany, editCompany, saveCompanyCurrId, toogleCompanyDetailsModal } from '../../redux/companies';
+import './employees-details.scss';
+import { addEmployee, editEmployee, saveEmployeeCurrId, toogleEmployeeDetailsModal } from '../../redux/companies';
 
-export const CompaniesDetails = (): ReactElement => {
+export const EmployeesDetails = (): ReactElement => {
 
   const dispatch = useAppDispatch();
   const companiesDetailsState = useAppSelector(selectorCompaniesDetailsState);
-  const currId = useAppSelector(selectorCompaniesCurrId);
+  const currId = useAppSelector(selectorEmployeesCurrId);
   const companies = useAppSelector(selectorCompanies);
   const currEl = companies.filter((i: ICompaniesData) => i.id === currId)[0];
 
@@ -25,24 +25,23 @@ export const CompaniesDetails = (): ReactElement => {
         id: newId,
         companyName: '',
         employeesCount: '0',
-        companyAddress: '',
-        employees: []
+        companyAddress: ''
       };
     }
   });
   const [disabled, setDisabled] = React.useState<boolean>(true);
 
   const onCloseCompaniesDetails = () => {
-    dispatch(saveCompanyCurrId(0));
-    dispatch(toogleCompanyDetailsModal(companiesDetailsState));
+    dispatch(saveEmployeeCurrId(0));
+    dispatch(toogleEmployeeDetailsModal(companiesDetailsState));
   };
 
   const onEsc = React.useCallback((evt: any) => {
     if (evt.key !== 'Escape') {
       return;
     }
-    dispatch(saveCompanyCurrId(0));
-    dispatch(toogleCompanyDetailsModal(companiesDetailsState));
+    dispatch(saveEmployeeCurrId(0));
+    dispatch(toogleEmployeeDetailsModal(companiesDetailsState));
   }, [companiesDetailsState, dispatch]);
 
   React.useEffect(() => {
@@ -69,23 +68,23 @@ export const CompaniesDetails = (): ReactElement => {
   const onBtnOkHandler = (e: React.FormEvent): void => {
     e.preventDefault();
     const newId = generateId(companies);
+    console.log('newId: ', newId);
 
     const newEl = {
       id: currId ? currId : newId,
       companyName: value.companyName.trim(),
       employeesCount: String(value.employeesCount).trim(),
-      companyAddress: value.companyAddress.trim(),
-      employees: currId ? value.employees : [],
+      companyAddress: value.companyAddress.trim()
     };
 
     if (currId) {
-      dispatch(editCompany(newEl));
+      dispatch(editEmployee(newEl));
     } else {
-      dispatch(addCompany(newEl));
+      dispatch(addEmployee(newEl));
     }
 
-    dispatch(toogleCompanyDetailsModal(companiesDetailsState));
-    dispatch(saveCompanyCurrId(0));
+    dispatch(toogleEmployeeDetailsModal(companiesDetailsState));
+    dispatch(saveEmployeeCurrId(0));
   };
 
   const onChangeItem = (id: string, e: React.ChangeEvent): void => {
@@ -100,12 +99,12 @@ export const CompaniesDetails = (): ReactElement => {
   };
 
   return (
-    <div className="companies-details">
-      <div className='companies-details__container'>
-        <div className='companies-details__header'>
-          <h2 className='companies-details__title'>{currEl ? 'Редактирование компании' : 'Создание компании'}</h2>
+    <div className="employees-details">
+      <div className='employees-details__container'>
+        <div className='employees-details__header'>
+          <h2 className='employees-details__title'>{currEl ? 'Редактирование сотрудника' : 'Создание сотрудника'}</h2>
           <button
-            className='companies-details__close-button'
+            className='employees-details__close-button'
             onClick={() => onCloseCompaniesDetails()}
           >
             <IoCloseSharp className='confirm-modal__close-icon' />
@@ -117,37 +116,37 @@ export const CompaniesDetails = (): ReactElement => {
           onSubmit={(e: React.FormEvent) => onBtnOkHandler(e)}>
 
           <label className='form__label'>
-            Название компании *
+            Фамилия *
             <input
-              id='companyName'
+              id='surname'
               className='form__input'
               type='text'
-              placeholder=' Введите название'
-              onChange={(e: React.ChangeEvent) => onChangeItem('companyName', e)}
-              value={value === null || value === undefined ? '' : value.companyName} />
+              placeholder=' Введите фамилию'
+              onChange={(e: React.ChangeEvent) => onChangeItem('surname', e)}
+              value={value === null || value === undefined ? '' : value.surname} />
           </label>
 
           <label className='form__label'>
-            Кол-во сотрудников
+            Имя *
             <input
-              id='employeesCount'
+              id='name'
               className='form__input'
               type='text'
-              onChange={(e: React.ChangeEvent) => onChangeItem('employeesCount', e)}
-              value={value === null || value === undefined ? '' : value.employeesCount}
-              disabled
+              placeholder=' Введите имя'
+              onChange={(e: React.ChangeEvent) => onChangeItem('name', e)}
+              value={value === null || value === undefined ? '' : value.name}
             />
           </label>
 
           <label className='form__label'>
-            Адрес *
+            Должность *
             <input
-              id='companyAddress'
+              id='position'
               className='form__input'
               type='text'
-              placeholder=' Введите адрес'
-              onChange={(e: React.ChangeEvent) => onChangeItem('companyAddress', e)}
-              value={value === null || value === undefined ? '' : value.companyAddress} />
+              placeholder=' Введите должность'
+              onChange={(e: React.ChangeEvent) => onChangeItem('position', e)}
+              value={value === null || value === undefined ? '' : value.position} />
           </label>
 
           <p className='form_paragraph'>

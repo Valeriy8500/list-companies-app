@@ -3,36 +3,76 @@ import { companiesData } from "../../constans/constans";
 
 const initialState = {
   elements: companiesData,
-  confirmModalState: false,
+  confirmCompaniesModalState: false,
+  confirmEmployeesModalState: false,
   companiesDetailsState: false,
-  currId: 0
+  employeesDetailsState: false,
+  companiesCurrId: 0,
+  employeesCurrId: 0,
 };
 
 export const companiesSlice = createSlice({
   name: "companies",
   initialState,
   reducers: {
-    addElement(state, action: PayloadAction<any>) {
-      console.log('addElement: ', action.payload);
+    addCompany(state, action: PayloadAction<any>) {
       state.elements.push(action.payload);
     },
-    editElement(state, action: PayloadAction<any>) {
-      console.log('editElement: ', action.payload);
+    editCompany(state, action: PayloadAction<any>) {
       state.elements = state.elements.map(item =>
         item.id !== action.payload.id ? item : { ...action.payload }
       );
     },
-    deleteElement(state, action: PayloadAction<any>) {
+    deleteCompany(state, action: PayloadAction<any>) {
       state.elements = state.elements.filter(item => item.id !== action.payload);
     },
-    toogleConfirmModalState(state) {
-      state.confirmModalState = !state.confirmModalState;
+    toogleCompanyConfirmModal(state) {
+      state.confirmCompaniesModalState = !state.confirmCompaniesModalState;
     },
-    toogleCompaniesDetailsState(state) {
+    toogleCompanyDetailsModal(state) {
       state.companiesDetailsState = !state.companiesDetailsState;
     },
-    saveCurrId(state, action: PayloadAction<any>) {
-      state.currId = action.payload;
+    saveCompanyCurrId(state, action: PayloadAction<any>) {
+      state.companiesCurrId = action.payload;
     },
+    toogleCompanyCheckBox(state, action: PayloadAction<any>) {
+      state.elements = state.elements.map(item =>
+        item.id === action.payload ? { ...item, checked: !item.checked } : item
+      );
+    },
+    addEmployee(state, action: PayloadAction<any>) {
+      state.elements.push(action.payload);
+    },
+    editEmployee(state, action: PayloadAction<any>) {
+      state.elements = state.elements.map(item =>
+        item.id !== action.payload.id ? item : { ...action.payload }
+      );
+    },
+    deleteEmployee(state, action: PayloadAction<any>) {
+      state.elements = state.elements.filter(item => item.id !== action.payload);
+    },
+    toogleEmployeeConfirmModal(state) {
+      state.confirmEmployeesModalState = !state.confirmEmployeesModalState;
+    },
+    toogleEmployeeDetailsModal(state) {
+      console.log('toogleEmployeesDetailsState');
+      state.employeesDetailsState = !state.employeesDetailsState;
+    },
+    saveEmployeeCurrId(state, action: PayloadAction<any>) {
+      state.employeesCurrId = action.payload;
+    },
+    toogleEmployeeCheckBox(state, action: PayloadAction<any>) {
+      state.elements = state.elements.map(item => {
+        if (item.id === state.companiesCurrId) {
+          const updatedEmployees = item.employees.map(i =>
+            i.id === action.payload ? { ...i, checked: !i.checked } : i
+          );
+          return { ...item, employees: updatedEmployees };
+        } else {
+          return item;
+        }
+      });
+    }
   }
 });
+
