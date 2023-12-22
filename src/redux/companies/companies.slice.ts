@@ -41,7 +41,14 @@ export const companiesSlice = createSlice({
       );
     },
     addEmployee(state, action: PayloadAction<any>) {
-      state.elements.push(action.payload);
+      state.elements = state.elements.map(item => {
+        if (item.id === state.companiesCurrId) {
+          const currEmployeesArr = [...item.employees, action.payload];
+          return { ...item, employees: currEmployeesArr };
+        } else {
+          return item;
+        }
+      });
     },
     editEmployee(state, action: PayloadAction<any>) {
       state.elements = state.elements.map(item => {

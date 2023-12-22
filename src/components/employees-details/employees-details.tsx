@@ -71,7 +71,6 @@ export const EmployeesDetails = (): ReactElement => {
   const onBtnOkHandler = (e: React.FormEvent): void => {
     e.preventDefault();
     const newId = generateId(companies);
-    console.log('newId: ', newId);
 
     const newEl = {
       id: currEmployeeId ? currEmployeeId : value.id,
