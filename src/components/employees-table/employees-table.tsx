@@ -13,7 +13,6 @@ import {
 } from '../../redux/companies';
 import {
   selectorCompanies,
-  selectorCompaniesCurrId,
   selectorConfirmEmployeesModalState,
   selectorEmployeesDetailsState
 } from '../../redux/selectors';
@@ -23,7 +22,6 @@ export const EmployeesTable = () => {
   const companiesData = useAppSelector(selectorCompanies);
   const confirmModalState = useAppSelector(selectorConfirmEmployeesModalState);
   const employeesDetailsState = useAppSelector(selectorEmployeesDetailsState);
-  const currId = useAppSelector(selectorCompaniesCurrId);
 
   const onDeleteBtn = useCallback((id: number): void => {
     dispatch(toogleEmployeeConfirmModal(confirmModalState));
@@ -41,12 +39,12 @@ export const EmployeesTable = () => {
   }, [dispatch]);
 
   const employeesRowTable = useMemo(() => {
-    const currEl = companiesData.filter((item: ICompaniesData) => item.id === currId)[0];
+    const currEmployeesArray = companiesData.filter((item: ICompaniesData) => item.checked)[0];
 
-    if (!currEl) {
+    if (!currEmployeesArray) {
       return null;
     } else {
-      return currEl.employees.map((item: IEmployeesData) => {
+      return currEmployeesArray.employees.map((item: IEmployeesData) => {
         return (
           <li
             className={
@@ -94,7 +92,7 @@ export const EmployeesTable = () => {
         )
       });
     }
-  }, [companiesData, onDeleteBtn, onEditBtn, currId, onChangeCheckbox]);
+  }, [companiesData, onDeleteBtn, onEditBtn, onChangeCheckbox]);
 
   return (
     <>
