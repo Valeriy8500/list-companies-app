@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { ICompaniesData } from '../../types/types';
 import { ConfirmModal } from '../confirmModal/confirm-modal';
 import { CompaniesDetails } from '../companies-details/companies-details';
+import { MdDeleteForever } from "react-icons/md";
 import {
   selectorCompanies,
   selectorCompaniesDetailsState,
@@ -25,11 +26,16 @@ export const CompaniesTable = () => {
   const confirmModalState = useAppSelector(selectorcConfirmCompaniesModalState);
   const companiesDetailsState = useAppSelector(selectorCompaniesDetailsState);
   const companiesSelectAllState = useAppSelector(selectorCompaniesSelectAllState);
+  const showDeleteBtn = companies.filter((item: ICompaniesData) => item.checked).length;
 
   const onDeleteBtn = useCallback((id: number): void => {
     dispatch(toogleCompanyConfirmModal(confirmModalState));
     dispatch(saveCompanyCurrId(id));
   }, [confirmModalState, dispatch]);
+
+  const onDeleteSelectCompanies = () => {
+    dispatch(toogleCompanyConfirmModal(confirmModalState));
+  };
 
   const onEditBtn = useCallback((id: number): void => {
     dispatch(toogleCompanyDetailsModal(companiesDetailsState));
@@ -38,7 +44,6 @@ export const CompaniesTable = () => {
 
   const onChangeCheckbox = useCallback((id: number) => {
     dispatch(toogleCompanyCheckBox(id));
-    dispatch(saveCompanyCurrId(id));
   }, [dispatch]);
 
   const onSelectAll = () => {
@@ -73,7 +78,7 @@ export const CompaniesTable = () => {
               id={String(item.id)}
               className={
                 item.checked ?
-                  'companies-container__show-btn far fa-edit companies-container__del-btn-checked'
+                  'companies-container__show-btn far fa-edit companies-container__show-btn-checked'
                   : 'companies-container__show-btn far fa-edit'
               }
               type='button'
@@ -84,28 +89,41 @@ export const CompaniesTable = () => {
               id={String(item.id)}
               className={
                 item.checked ?
-                  'companies-container__del-btn far fa-trash-alt companies-container__show-btn-checked'
+                  'companies-container__del-btn far fa-trash-alt companies-container__del-btn-checked'
                   : 'companies-container__del-btn far fa-trash-alt'
               }
+              style={showDeleteBtn > 1 ? { opacity: '0.5' } : undefined}
               type='button'
               title='Удалить'
+              disabled={showDeleteBtn > 1 && true}
               onClick={() => onDeleteBtn(item.id)}
             />
           </div>
         </li>
       )
     });
-  }, [companies, onDeleteBtn, onEditBtn, onChangeCheckbox]);
+  }, [companies, onDeleteBtn, onEditBtn, onChangeCheckbox, showDeleteBtn]);
 
   return (
     <>
       <div className="companies-container">
-        <button
-          className='companies-container__add-button'
-          onClick={() => dispatch(toogleCompanyDetailsModal(companiesDetailsState))}>
-          <FiPlusCircle className='companies-container__icon-plus' />
-          Добавить
-        </button>
+        <div className='companies-container__btn-container'>
+          <button
+            className='companies-container__add-button'
+            onClick={() => dispatch(toogleCompanyDetailsModal(companiesDetailsState))}>
+            <FiPlusCircle className='companies-container__icon-plus' />
+            Добавить
+          </button>
+
+          {showDeleteBtn > 1 &&
+            <button
+              className='companies-container__del-all-btn'
+              onClick={() => onDeleteSelectCompanies()}>
+              <MdDeleteForever className='companies-container__dell-icon-btn' />
+              Удалить
+            </button>
+          }
+        </div>
 
         <ul className='companies-container__list'>
           <li className='companies-container__item'>

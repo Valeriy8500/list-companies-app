@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { ICompaniesData, IEmployeesData } from '../../types/types';
 import { ConfirmModal } from '../confirmModal/confirm-modal';
 import { EmployeesDetails } from '../employees-details/employees-details';
+import { MdDeleteForever } from 'react-icons/md';
 import {
   saveEmployeeCurrId,
   selectAllEmployees,
@@ -13,6 +14,7 @@ import {
 } from '../../redux/companies';
 import {
   selectorCompanies,
+  selectorCompaniesCurrId,
   selectorConfirmEmployeesModalState,
   selectorEmployeesDetailsState,
   selectorEmployeesSelectAllState
@@ -25,11 +27,18 @@ export const EmployeesTable = () => {
   const confirmModalState = useAppSelector(selectorConfirmEmployeesModalState);
   const employeesDetailsState = useAppSelector(selectorEmployeesDetailsState);
   const employeesSelectAllState = useAppSelector(selectorEmployeesSelectAllState);
+  const currCompaniesId = useAppSelector(selectorCompaniesCurrId);
+  const showDeleteBtn = companiesData.filter((i: ICompaniesData) => i.id === currCompaniesId)[0].employees
+    .filter((i: IEmployeesData) => i.checked).length;
 
   const onDeleteBtn = useCallback((id: number): void => {
     dispatch(toogleEmployeeConfirmModal(confirmModalState));
     dispatch(saveEmployeeCurrId(id));
   }, [confirmModalState, dispatch]);
+
+  const onDeleteSelectEmployees = () => {
+    dispatch(toogleEmployeeConfirmModal(confirmModalState));
+  };
 
   const onEditBtn = useCallback((id: number): void => {
     dispatch(toogleEmployeeDetailsModal(employeesDetailsState));
@@ -90,8 +99,10 @@ export const EmployeesTable = () => {
                     'employees-container__del-btn far fa-trash-alt employees-container__show-btn-checked'
                     : 'employees-container__del-btn far fa-trash-alt'
                 }
+                style={showDeleteBtn > 1 ? { opacity: '0.5' } : undefined}
                 type='button'
                 title='Удалить'
+                disabled={showDeleteBtn > 1 && true}
                 onClick={() => onDeleteBtn(item.id)}
               />
             </div>
@@ -99,13 +110,21 @@ export const EmployeesTable = () => {
         )
       });
     }
-  }, [companiesData, onDeleteBtn, onEditBtn, onChangeCheckbox]);
+  }, [companiesData, onDeleteBtn, onEditBtn, onChangeCheckbox, showDeleteBtn]);
 
   return (
     <>
       <div className="employees-container">
         <header className="employees-container__header">
           <h2 className="employees-container__title">Сотрудники компании</h2>
+          {showDeleteBtn > 1 &&
+            <button
+              className='employees-container__del-all-btn'
+              onClick={() => onDeleteSelectEmployees()}>
+              <MdDeleteForever className='companies-container__dell-icon-btn' />
+              Удалить
+            </button>
+          }
           <button
             className='employees-container__add-button'
             onClick={() => dispatch(toogleEmployeeDetailsModal(employeesDetailsState))}>

@@ -1,9 +1,25 @@
 import { ReactElement, useCallback, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { selectorCompaniesCurrId, selectorConfirmEmployeesModalState, selectorEmployeesCurrId, selectorcConfirmCompaniesModalState } from '../../redux/selectors';
 import { IoCloseSharp } from "react-icons/io5";
+import {
+  selectorCompanies,
+  selectorCompaniesCurrId,
+  selectorConfirmEmployeesModalState,
+  selectorEmployeesCurrId,
+  selectorcConfirmCompaniesModalState
+} from '../../redux/selectors';
+import {
+  deleteCompany,
+  deleteEmployee,
+  deleteSelectCompanies,
+  deleteSelectEmployees,
+  saveCompanyCurrId,
+  saveEmployeeCurrId,
+  toogleCompanyConfirmModal,
+  toogleEmployeeConfirmModal
+} from '../../redux/companies';
 import './confirm-modal.scss';
-import { deleteCompany, deleteEmployee, saveCompanyCurrId, saveEmployeeCurrId, toogleCompanyConfirmModal, toogleEmployeeConfirmModal } from '../../redux/companies';
+import { ICompaniesData, IEmployeesData } from '../../types/types';
 
 export const ConfirmModal = (): ReactElement => {
   const dispatch = useAppDispatch();
@@ -11,28 +27,46 @@ export const ConfirmModal = (): ReactElement => {
   const confirmEmployeesModalState = useAppSelector(selectorConfirmEmployeesModalState);
   const companiesCurrId = useAppSelector(selectorCompaniesCurrId);
   const employeesCurrId = useAppSelector(selectorEmployeesCurrId);
+  const companies = useAppSelector(selectorCompanies);
+  const countCheckedCompanies = companies.filter((item: ICompaniesData) => item.checked).length;
+  const countCheckedEmployees = companies.filter((i: ICompaniesData) => i.id === companiesCurrId)[0].employees
+    .filter((i: IEmployeesData) => i.checked).length;
 
   const onConfirmDelete = useCallback((): void => {
     if (confirmCompaniesModalState) {
-      dispatch(deleteCompany(companiesCurrId));
-      dispatch(toogleCompanyConfirmModal(confirmCompaniesModalState));
-      dispatch(saveCompanyCurrId(0));
+      if (countCheckedCompanies > 1) {
+        dispatch(deleteSelectCompanies());
+        dispatch(toogleCompanyConfirmModal(confirmCompaniesModalState));
+        dispatch(saveCompanyCurrId(0));
+      } else {
+        dispatch(deleteCompany(companiesCurrId));
+        dispatch(toogleCompanyConfirmModal(confirmCompaniesModalState));
+        dispatch(saveCompanyCurrId(0));
+      }
     }
 
     if (confirmEmployeesModalState) {
-      dispatch(deleteEmployee(employeesCurrId));
-      dispatch(toogleEmployeeConfirmModal(confirmEmployeesModalState));
-      dispatch(saveEmployeeCurrId(0));
+      if (countCheckedEmployees > 1) {
+        dispatch(deleteSelectEmployees());
+        dispatch(toogleEmployeeConfirmModal(confirmEmployeesModalState));
+        dispatch(saveEmployeeCurrId(0));
+      } else {
+        dispatch(deleteEmployee(employeesCurrId));
+        dispatch(toogleEmployeeConfirmModal(confirmEmployeesModalState));
+        dispatch(saveEmployeeCurrId(0));
+      }
     }
   }, [
     companiesCurrId,
     dispatch,
     confirmCompaniesModalState,
     confirmEmployeesModalState,
-    employeesCurrId
+    employeesCurrId,
+    countCheckedCompanies,
+    countCheckedEmployees
   ]);
 
-  const onCloseConfirmModal = () => {
+  const onCloseConfirmModal = useCallback(() => {
     if (confirmCompaniesModalState) {
       dispatch(saveCompanyCurrId(0));
       dispatch(toogleCompanyConfirmModal(confirmCompaniesModalState));
@@ -42,23 +76,19 @@ export const ConfirmModal = (): ReactElement => {
       dispatch(saveEmployeeCurrId(0));
       dispatch(toogleEmployeeConfirmModal(confirmEmployeesModalState));
     }
-  };
+  }, [
+    confirmCompaniesModalState,
+    confirmEmployeesModalState,
+    dispatch
+  ]);
 
   const onEsc = useCallback((e: any) => {
     if (e.key !== 'Escape') {
       return;
     }
 
-    if (confirmCompaniesModalState) {
-      dispatch(saveCompanyCurrId(0));
-      dispatch(toogleCompanyConfirmModal(confirmCompaniesModalState));
-    }
-
-    if (confirmEmployeesModalState) {
-      dispatch(saveEmployeeCurrId(0));
-      dispatch(toogleEmployeeConfirmModal(confirmEmployeesModalState));
-    }
-  }, [dispatch, confirmCompaniesModalState, confirmEmployeesModalState]);
+    onCloseConfirmModal();
+  }, [onCloseConfirmModal]);
 
   useEffect(() => {
     document.addEventListener('keydown', onEsc);

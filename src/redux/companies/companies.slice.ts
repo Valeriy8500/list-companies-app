@@ -27,6 +27,10 @@ export const companiesSlice = createSlice({
     },
     deleteCompany(state, action: PayloadAction<any>) {
       state.elements = state.elements.filter(item => item.id !== action.payload);
+
+      if (state.elements.length === 0) {
+        state.companiesSelectAllState = !state.companiesSelectAllState;
+      }
     },
     toogleCompanyConfirmModal(state) {
       state.confirmCompaniesModalState = !state.confirmCompaniesModalState;
@@ -41,6 +45,14 @@ export const companiesSlice = createSlice({
       state.elements = state.elements.map(item =>
         item.id === action.payload ? { ...item, checked: !item.checked } : item
       );
+
+      const currCheckEl = state.elements.filter(item => item.checked);
+
+      if (currCheckEl.length === 1 && currCheckEl[0].id !== action.payload) {
+        state.companiesCurrId = currCheckEl[0].id;
+      } else {
+        state.companiesCurrId = action.payload;
+      }
     },
     selectAllCompanies(state) {
       state.companiesSelectAllState = !state.companiesSelectAllState;
@@ -48,6 +60,13 @@ export const companiesSlice = createSlice({
       state.elements = state.elements.map((item) => {
         return { ...item, checked: state.companiesSelectAllState };
       });
+    },
+    deleteSelectCompanies(state) {
+      state.elements = state.elements.filter(item => !item.checked);
+
+      if (state.elements.length === 0) {
+        state.companiesSelectAllState = !state.companiesSelectAllState;
+      }
     },
     addEmployee(state, action: PayloadAction<any>) {
       state.elements = state.elements.map(item => {
@@ -82,6 +101,12 @@ export const companiesSlice = createSlice({
           return item;
         }
       });
+
+      const employeesArrlength = state.elements.filter((i) => i.id === state.companiesCurrId)[0].employees.length
+
+      if (employeesArrlength === 0) {
+        state.employeesSelectAllState = !state.employeesSelectAllState;
+      }
     },
     toogleEmployeeConfirmModal(state) {
       state.confirmEmployeesModalState = !state.confirmEmployeesModalState;
@@ -117,6 +142,23 @@ export const companiesSlice = createSlice({
           return item;
         }
       });
+    },
+    deleteSelectEmployees(state) {
+      state.elements = state.elements.map(item => {
+        if (item.id === state.companiesCurrId) {
+          const updatedEmployees = item.employees.filter(i => !i.checked);
+
+          return { ...item, employees: updatedEmployees };
+        } else {
+          return item;
+        }
+      });
+
+      const employeesArrlength = state.elements.filter((i) => i.id === state.companiesCurrId)[0].employees.length
+
+      if (employeesArrlength === 0) {
+        state.employeesSelectAllState = !state.employeesSelectAllState;
+      }
     },
   }
 });

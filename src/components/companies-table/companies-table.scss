@@ -3,37 +3,76 @@
   display: flex;
   flex-direction: column;
 
-  .companies-container__add-button {
-    font-family: Arial, sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 20px;
-    width: 160px;
-    height: 36px;
-    background-color: #4587ED;
-    border: none;
-    color: #ffffff;
-    border-radius: 6px;
+  .companies-container__btn-container {
+    width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    align-self: flex-start;
-    margin-bottom: 20px;
 
-    .companies-container__icon-plus {
-      width: 25px;
-      height: 25px;
-      margin-right: 10px;
+    .companies-container__add-button {
+      font-family: Arial, sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 20px;
+      width: 160px;
+      height: 36px;
+      background-color: #4587ED;
+      border: none;
       color: #ffffff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      align-self: flex-start;
+      margin-bottom: 20px;
+
+      .companies-container__icon-plus {
+        width: 25px;
+        height: 25px;
+        margin-right: 10px;
+        color: #ffffff;
+        opacity: 0.8;
+      }
+    }
+
+    .companies-container__add-button:hover {
+      cursor: pointer;
       opacity: 0.8;
     }
-  }
 
-  .companies-container__add-button:hover {
-    cursor: pointer;
-    opacity: 0.8;
+    .companies-container__del-all-btn {
+      font-family: Arial, sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 20px;
+      width: 160px;
+      height: 36px;
+      background-color: #973137;
+      border: none;
+      color: #ffffff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      align-self: flex-start;
+      margin-bottom: 20px;
+      margin-left: 20px;
+
+      .companies-container__dell-icon-btn {
+        width: 25px;
+        height: 25px;
+        margin-right: 10px;
+        color: #ffffff;
+        opacity: 0.8;
+      }
+    }
+
+    .companies-container__del-all-btn:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
   }
 
   .companies-container__list {

@@ -11,6 +11,7 @@ export const {
   saveCompanyCurrId,
   toogleCompanyCheckBox,
   selectAllCompanies,
+  deleteSelectCompanies,
   addEmployee,
   editEmployee,
   deleteEmployee,
@@ -18,5 +19,6 @@ export const {
   toogleEmployeeDetailsModal,
   saveEmployeeCurrId,
   toogleEmployeeCheckBox,
-  selectAllEmployees
+  selectAllEmployees,
+  deleteSelectEmployees
 } = companiesSlice.actions;
