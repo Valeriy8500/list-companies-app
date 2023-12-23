@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import { FiPlusCircle } from "react-icons/fi";
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { ICompaniesData } from '../../types/types';
@@ -12,6 +12,7 @@ import {
   selectorcConfirmCompaniesModalState
 } from '../../redux/selectors';
 import {
+  addCompanies,
   saveCompanyCurrId,
   selectAllCompanies,
   toogleCompanyCheckBox,
@@ -21,6 +22,8 @@ import {
 import './companies-table.scss';
 
 export const CompaniesTable = () => {
+  // const observer: any = useRef(); useRef для динамической загрузки
+
   const dispatch = useAppDispatch();
   const companies = useAppSelector(selectorCompanies);
   const confirmModalState = useAppSelector(selectorcConfirmCompaniesModalState);
@@ -50,6 +53,24 @@ export const CompaniesTable = () => {
     dispatch(selectAllCompanies());
   };
 
+  // Todo: код для динамической загрузки компаний
+  // const lastNodeRef = useCallback((node: any) => {
+  //   if (observer.current) {
+  //     observer.current.disconnect();
+  //   }
+
+  //   observer.current = new IntersectionObserver((entries) => {
+  //     // проверяем, виден ли последний элемент на экране
+  //     if (entries[0].isIntersecting) {
+  //       dispatch(addCompanies());
+  //     }
+  //   });
+
+  //   if (node) {
+  //     observer.current.observe(node);
+  //   }
+  // }, [dispatch]);
+
   const companiesRowTable = useMemo(() => {
     return companies.map((item: ICompaniesData) => {
       return (
@@ -59,6 +80,7 @@ export const CompaniesTable = () => {
               'companies-container__item companies-container__item-checked' : 'companies-container__item'
           }
           key={item.id}
+        // ref={lastNodeRef} ref для динамической загрузки
         >
           <span className='companies-container__item-el'>
             <input
@@ -102,7 +124,14 @@ export const CompaniesTable = () => {
         </li>
       )
     });
-  }, [companies, onDeleteBtn, onEditBtn, onChangeCheckbox, showDeleteBtn]);
+  }, [
+    companies,
+    onDeleteBtn,
+    onEditBtn,
+    onChangeCheckbox,
+    showDeleteBtn,
+    // lastNodeRef
+  ]);
 
   return (
     <>

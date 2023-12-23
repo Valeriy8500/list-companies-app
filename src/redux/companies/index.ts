@@ -4,6 +4,7 @@ export const companiesSliceReducer = companiesSlice.reducer;
 
 export const {
   addCompany,
+  addCompanies,
   editCompany,
   deleteCompany,
   toogleCompanyConfirmModal,

@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { companiesData } from "../../constans/constans";
+import { companiesData, uploadedData } from "../../constans/constans";
 
 const initialState = {
   elements: companiesData,
@@ -19,6 +19,9 @@ export const companiesSlice = createSlice({
   reducers: {
     addCompany(state, action: PayloadAction<any>) {
       state.elements.push(action.payload);
+    },
+    addCompanies(state) {
+      state.elements.push(...uploadedData);
     },
     editCompany(state, action: PayloadAction<any>) {
       state.elements = state.elements.map(item =>
@@ -64,7 +67,7 @@ export const companiesSlice = createSlice({
     deleteSelectCompanies(state) {
       state.elements = state.elements.filter(item => !item.checked);
 
-      if (state.elements.length === 0) {
+      if (state.companiesSelectAllState) {
         state.companiesSelectAllState = !state.companiesSelectAllState;
       }
     },
@@ -154,9 +157,7 @@ export const companiesSlice = createSlice({
         }
       });
 
-      const employeesArrlength = state.elements.filter((i) => i.id === state.companiesCurrId)[0].employees.length
-
-      if (employeesArrlength === 0) {
+      if (state.employeesSelectAllState) {
         state.employeesSelectAllState = !state.employeesSelectAllState;
       }
     },

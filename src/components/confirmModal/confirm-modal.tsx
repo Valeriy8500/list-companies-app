@@ -29,8 +29,6 @@ export const ConfirmModal = (): ReactElement => {
   const employeesCurrId = useAppSelector(selectorEmployeesCurrId);
   const companies = useAppSelector(selectorCompanies);
   const countCheckedCompanies = companies.filter((item: ICompaniesData) => item.checked).length;
-  const countCheckedEmployees = companies.filter((i: ICompaniesData) => i.id === companiesCurrId)[0].employees
-    .filter((i: IEmployeesData) => i.checked).length;
 
   const onConfirmDelete = useCallback((): void => {
     if (confirmCompaniesModalState) {
@@ -46,6 +44,9 @@ export const ConfirmModal = (): ReactElement => {
     }
 
     if (confirmEmployeesModalState) {
+      const countCheckedEmployees = companies.filter((i: ICompaniesData) => i.id === companiesCurrId)[0].employees
+        ?.filter((i: IEmployeesData) => i.checked).length;
+
       if (countCheckedEmployees > 1) {
         dispatch(deleteSelectEmployees());
         dispatch(toogleEmployeeConfirmModal(confirmEmployeesModalState));
@@ -63,7 +64,7 @@ export const ConfirmModal = (): ReactElement => {
     confirmEmployeesModalState,
     employeesCurrId,
     countCheckedCompanies,
-    countCheckedEmployees
+    companies
   ]);
 
   const onCloseConfirmModal = useCallback(() => {
