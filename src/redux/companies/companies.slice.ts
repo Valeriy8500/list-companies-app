@@ -63,7 +63,16 @@ export const companiesSlice = createSlice({
       });
     },
     deleteEmployee(state, action: PayloadAction<any>) {
-      state.elements = state.elements.filter(item => item.id !== action.payload);
+      state.elements = state.elements.map(item => {
+        if (item.id === state.companiesCurrId) {
+          const newEmployeesArr = item.employees.filter(i =>
+            i.id !== action.payload
+          );
+          return { ...item, employees: newEmployeesArr };
+        } else {
+          return item;
+        }
+      });
     },
     toogleEmployeeConfirmModal(state) {
       state.confirmEmployeesModalState = !state.confirmEmployeesModalState;

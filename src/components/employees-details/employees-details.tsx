@@ -28,7 +28,8 @@ export const EmployeesDetails = (): ReactElement => {
         id: newId,
         surname: '',
         name: '',
-        position: ''
+        position: '',
+        checked: false
       };
     }
   });
@@ -70,9 +71,9 @@ export const EmployeesDetails = (): ReactElement => {
 
   const onBtnOkHandler = (e: React.FormEvent): void => {
     e.preventDefault();
-    const newId = generateId(companies);
 
     const newEl = {
+      ...value,
       id: currEmployeeId ? currEmployeeId : value.id,
       surname: value.surname.trim(),
       name: value.name.trim(),

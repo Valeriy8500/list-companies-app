@@ -1,33 +1,64 @@
 import { ReactElement, useCallback, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { selectorCompaniesCurrId, selectorcConfirmCompaniesModalState } from '../../redux/selectors';
+import { selectorCompaniesCurrId, selectorConfirmEmployeesModalState, selectorEmployeesCurrId, selectorcConfirmCompaniesModalState } from '../../redux/selectors';
 import { IoCloseSharp } from "react-icons/io5";
 import './confirm-modal.scss';
-import { deleteCompany, saveCompanyCurrId, toogleCompanyConfirmModal } from '../../redux/companies';
+import { deleteCompany, deleteEmployee, saveCompanyCurrId, saveEmployeeCurrId, toogleCompanyConfirmModal, toogleEmployeeConfirmModal } from '../../redux/companies';
 
 export const ConfirmModal = (): ReactElement => {
   const dispatch = useAppDispatch();
-  const confirmModalState = useAppSelector(selectorcConfirmCompaniesModalState);
-  const currId = useAppSelector(selectorCompaniesCurrId);
+  const confirmCompaniesModalState = useAppSelector(selectorcConfirmCompaniesModalState);
+  const confirmEmployeesModalState = useAppSelector(selectorConfirmEmployeesModalState);
+  const companiesCurrId = useAppSelector(selectorCompaniesCurrId);
+  const employeesCurrId = useAppSelector(selectorEmployeesCurrId);
 
   const onConfirmDelete = useCallback((): void => {
-    dispatch(deleteCompany(currId));
-    dispatch(toogleCompanyConfirmModal(confirmModalState));
-    dispatch(saveCompanyCurrId(0));
-  }, [currId, dispatch, confirmModalState]);
+    if (confirmCompaniesModalState) {
+      dispatch(deleteCompany(companiesCurrId));
+      dispatch(toogleCompanyConfirmModal(confirmCompaniesModalState));
+      dispatch(saveCompanyCurrId(0));
+    }
+
+    if (confirmEmployeesModalState) {
+      dispatch(deleteEmployee(employeesCurrId));
+      dispatch(toogleEmployeeConfirmModal(confirmEmployeesModalState));
+      dispatch(saveEmployeeCurrId(0));
+    }
+  }, [
+    companiesCurrId,
+    dispatch,
+    confirmCompaniesModalState,
+    confirmEmployeesModalState,
+    employeesCurrId
+  ]);
 
   const onCloseConfirmModal = () => {
-    dispatch(saveCompanyCurrId(0));
-    dispatch(toogleCompanyConfirmModal(confirmModalState));
+    if (confirmCompaniesModalState) {
+      dispatch(saveCompanyCurrId(0));
+      dispatch(toogleCompanyConfirmModal(confirmCompaniesModalState));
+    }
+
+    if (confirmEmployeesModalState) {
+      dispatch(saveEmployeeCurrId(0));
+      dispatch(toogleEmployeeConfirmModal(confirmEmployeesModalState));
+    }
   };
 
   const onEsc = useCallback((e: any) => {
     if (e.key !== 'Escape') {
       return;
     }
-    dispatch(saveCompanyCurrId(0));
-    dispatch(toogleCompanyConfirmModal(confirmModalState));
-  }, [dispatch, confirmModalState]);
+
+    if (confirmCompaniesModalState) {
+      dispatch(saveCompanyCurrId(0));
+      dispatch(toogleCompanyConfirmModal(confirmCompaniesModalState));
+    }
+
+    if (confirmEmployeesModalState) {
+      dispatch(saveEmployeeCurrId(0));
+      dispatch(toogleEmployeeConfirmModal(confirmEmployeesModalState));
+    }
+  }, [dispatch, confirmCompaniesModalState, confirmEmployeesModalState]);
 
   useEffect(() => {
     document.addEventListener('keydown', onEsc);

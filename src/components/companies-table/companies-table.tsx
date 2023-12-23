@@ -31,8 +31,6 @@ export const CompaniesTable = () => {
 
   const companiesRowTable = useMemo(() => {
     return companies.map((item: ICompaniesData) => {
-      // console.log('item.empl: ', item.employees);
-
       return (
         <li
           className={

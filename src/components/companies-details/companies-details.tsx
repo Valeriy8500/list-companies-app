@@ -26,6 +26,7 @@ export const CompaniesDetails = (): ReactElement => {
         companyName: '',
         employeesCount: '0',
         companyAddress: '',
+        checked: false,
         employees: []
       };
     }
@@ -68,10 +69,10 @@ export const CompaniesDetails = (): ReactElement => {
 
   const onBtnOkHandler = (e: React.FormEvent): void => {
     e.preventDefault();
-    const newId = generateId(companies);
 
     const newEl = {
-      id: currId ? currId : newId,
+      ...value,
+      id: currId ? currId : value.id,
       companyName: value.companyName.trim(),
       employeesCount: String(value.employeesCount).trim(),
       companyAddress: value.companyAddress.trim(),
