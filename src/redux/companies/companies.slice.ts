@@ -9,6 +9,8 @@ const initialState = {
   employeesDetailsState: false,
   companiesCurrId: 0,
   employeesCurrId: 0,
+  companiesSelectAllState: false,
+  employeesSelectAllState: false
 };
 
 export const companiesSlice = createSlice({
@@ -39,6 +41,13 @@ export const companiesSlice = createSlice({
       state.elements = state.elements.map(item =>
         item.id === action.payload ? { ...item, checked: !item.checked } : item
       );
+    },
+    selectAllCompanies(state) {
+      state.companiesSelectAllState = !state.companiesSelectAllState;
+
+      state.elements = state.elements.map((item) => {
+        return { ...item, checked: state.companiesSelectAllState };
+      });
     },
     addEmployee(state, action: PayloadAction<any>) {
       state.elements = state.elements.map(item => {
@@ -94,7 +103,21 @@ export const companiesSlice = createSlice({
           return item;
         }
       });
-    }
+    },
+    selectAllEmployees(state) {
+      state.employeesSelectAllState = !state.employeesSelectAllState;
+
+      state.elements = state.elements.map(item => {
+        if (item.id === state.companiesCurrId) {
+          const updatedEmployees = item.employees.map(i => {
+            return { ...i, checked: state.employeesSelectAllState };
+          });
+          return { ...item, employees: updatedEmployees };
+        } else {
+          return item;
+        }
+      });
+    },
   }
 });
 

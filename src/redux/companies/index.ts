@@ -10,11 +10,13 @@ export const {
   toogleCompanyDetailsModal,
   saveCompanyCurrId,
   toogleCompanyCheckBox,
+  selectAllCompanies,
   addEmployee,
   editEmployee,
   deleteEmployee,
   toogleEmployeeConfirmModal,
   toogleEmployeeDetailsModal,
   saveEmployeeCurrId,
-  toogleEmployeeCheckBox
+  toogleEmployeeCheckBox,
+  selectAllEmployees
 } = companiesSlice.actions;

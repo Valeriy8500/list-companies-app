@@ -1,18 +1,30 @@
 import { useCallback, useMemo } from 'react';
 import { FiPlusCircle } from "react-icons/fi";
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { selectorCompanies, selectorCompaniesDetailsState, selectorcConfirmCompaniesModalState } from '../../redux/selectors';
 import { ICompaniesData } from '../../types/types';
 import { ConfirmModal } from '../confirmModal/confirm-modal';
 import { CompaniesDetails } from '../companies-details/companies-details';
+import {
+  selectorCompanies,
+  selectorCompaniesDetailsState,
+  selectorCompaniesSelectAllState,
+  selectorcConfirmCompaniesModalState
+} from '../../redux/selectors';
+import {
+  saveCompanyCurrId,
+  selectAllCompanies,
+  toogleCompanyCheckBox,
+  toogleCompanyConfirmModal,
+  toogleCompanyDetailsModal
+} from '../../redux/companies';
 import './companies-table.scss';
-import { saveCompanyCurrId, toogleCompanyCheckBox, toogleCompanyConfirmModal, toogleCompanyDetailsModal } from '../../redux/companies';
 
 export const CompaniesTable = () => {
   const dispatch = useAppDispatch();
   const companies = useAppSelector(selectorCompanies);
   const confirmModalState = useAppSelector(selectorcConfirmCompaniesModalState);
   const companiesDetailsState = useAppSelector(selectorCompaniesDetailsState);
+  const companiesSelectAllState = useAppSelector(selectorCompaniesSelectAllState);
 
   const onDeleteBtn = useCallback((id: number): void => {
     dispatch(toogleCompanyConfirmModal(confirmModalState));
@@ -28,6 +40,10 @@ export const CompaniesTable = () => {
     dispatch(toogleCompanyCheckBox(id));
     dispatch(saveCompanyCurrId(id));
   }, [dispatch]);
+
+  const onSelectAll = () => {
+    dispatch(selectAllCompanies());
+  };
 
   const companiesRowTable = useMemo(() => {
     return companies.map((item: ICompaniesData) => {
@@ -48,7 +64,7 @@ export const CompaniesTable = () => {
             />
           </span>
           <span className='companies-container__item-el'>{item.companyName}</span>
-          <span className='companies-container__item-el'>{item.employeesCount}</span>
+          <span className='companies-container__item-el'>{item.employees.length}</span>
           <span className='companies-container__item-el' title={item.companyAddress}>
             {item.companyAddress}
           </span>
@@ -94,7 +110,12 @@ export const CompaniesTable = () => {
         <ul className='companies-container__list'>
           <li className='companies-container__item'>
             <span className='companies-container__item-el'>
-              <input type='checkbox' className='companies-container__checkbox' />
+              <input
+                type='checkbox'
+                className='companies-container__checkbox'
+                checked={companiesSelectAllState}
+                onChange={() => onSelectAll()}
+              />
               Выделить всё
             </span>
             <span className='companies-container__item-el'>Название компании</span>

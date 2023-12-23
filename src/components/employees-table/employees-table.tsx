@@ -4,9 +4,9 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { ICompaniesData, IEmployeesData } from '../../types/types';
 import { ConfirmModal } from '../confirmModal/confirm-modal';
 import { EmployeesDetails } from '../employees-details/employees-details';
-import './employees-table.scss';
 import {
   saveEmployeeCurrId,
+  selectAllEmployees,
   toogleEmployeeCheckBox,
   toogleEmployeeConfirmModal,
   toogleEmployeeDetailsModal
@@ -14,14 +14,17 @@ import {
 import {
   selectorCompanies,
   selectorConfirmEmployeesModalState,
-  selectorEmployeesDetailsState
+  selectorEmployeesDetailsState,
+  selectorEmployeesSelectAllState
 } from '../../redux/selectors';
+import './employees-table.scss';
 
 export const EmployeesTable = () => {
   const dispatch = useAppDispatch();
   const companiesData = useAppSelector(selectorCompanies);
   const confirmModalState = useAppSelector(selectorConfirmEmployeesModalState);
   const employeesDetailsState = useAppSelector(selectorEmployeesDetailsState);
+  const employeesSelectAllState = useAppSelector(selectorEmployeesSelectAllState);
 
   const onDeleteBtn = useCallback((id: number): void => {
     dispatch(toogleEmployeeConfirmModal(confirmModalState));
@@ -37,6 +40,10 @@ export const EmployeesTable = () => {
     dispatch(toogleEmployeeCheckBox(id));
     dispatch(saveEmployeeCurrId(id));
   }, [dispatch]);
+
+  const onSelectAll = () => {
+    dispatch(selectAllEmployees());
+  };
 
   const employeesRowTable = useMemo(() => {
     const currEmployeesArray = companiesData.filter((item: ICompaniesData) => item.checked)[0];
@@ -111,7 +118,12 @@ export const EmployeesTable = () => {
         <ul className='employees-container__list'>
           <li className='employees-container__item'>
             <span className='employees-container__item-el'>
-              <input type='checkbox' className='employees-container__checkbox' />
+              <input
+                type='checkbox'
+                className='employees-container__checkbox'
+                checked={employeesSelectAllState}
+                onChange={() => onSelectAll()}
+              />
             </span>
             <span className='employees-container__item-el'>Фамилия</span>
             <span className='employees-container__item-el'>Имя</span>
