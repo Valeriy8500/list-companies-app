@@ -14,6 +14,8 @@ export const EmployeesDetails = (): ReactElement => {
   const currCompaniesId = useAppSelector(selectorCompaniesCurrId);
   const currEmployeeId = useAppSelector(selectorEmployeesCurrId);
   const companies = useAppSelector(selectorCompanies);
+
+  console.log('currEmployeeEl: ', companies);
   const currEmployeeEl = companies.filter((i: ICompaniesData) => i.id === currCompaniesId)[0].employees
     .filter((i: IEmployeesData) => i.id === currEmployeeId)[0];
 

@@ -79,13 +79,14 @@ export const CompaniesDetails = (): ReactElement => {
       employees: currId ? value.employees : [],
     };
 
+    console.log('newEl: ', newEl);
+
     if (currId) {
       dispatch(editCompany(newEl));
     } else {
       dispatch(addCompany(newEl));
     }
 
-    dispatch(saveCompanyCurrId(0));
     dispatch(toogleCompanyDetailsModal(companiesDetailsState));
   };
 
