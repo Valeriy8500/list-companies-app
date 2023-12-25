@@ -114,7 +114,7 @@ export const ConfirmModal = (): ReactElement => {
           </button>
         </div>
         <div className='confirm-modal-content'>
-          Вы точно хотите удалить элемент?
+          Вы точно хотите удалить элемент(ы)?
         </div>
         <div className='confirm-modal__footer'>
           <button

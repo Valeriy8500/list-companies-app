@@ -130,6 +130,7 @@
           font-weight: 600;
           font-size: 20px;
           color: #353D4B;
+          opacity: 0.5;
         }
 
         .employees-container__show-btn:hover,
@@ -151,6 +152,10 @@
         .employees-container__del-btn-checked,
         .employees-container__show-btn-checked {
           background-color: #7fadf1;
+        }
+
+        .employees-container__show-btn-checked {
+          opacity: 1;
         }
       }
     }

@@ -22,7 +22,7 @@ import {
 import './companies-table.scss';
 
 export const CompaniesTable = () => {
-  // const observer: any = useRef(); useRef для динамической загрузки
+  const observer: any = useRef();
 
   const dispatch = useAppDispatch();
   const companies = useAppSelector(selectorCompanies);
@@ -53,23 +53,27 @@ export const CompaniesTable = () => {
     dispatch(selectAllCompanies());
   };
 
-  // Todo: код для динамической загрузки компаний
-  // const lastNodeRef = useCallback((node: any) => {
-  //   if (observer.current) {
-  //     observer.current.disconnect();
-  //   }
+  const onAddCompany = () => {
+    dispatch(saveCompanyCurrId(0));
+    dispatch(toogleCompanyDetailsModal(companiesDetailsState));
+  };
 
-  //   observer.current = new IntersectionObserver((entries) => {
-  //     // проверяем, виден ли последний элемент на экране
-  //     if (entries[0].isIntersecting) {
-  //       dispatch(addCompanies());
-  //     }
-  //   });
+  const lastNodeRef = useCallback((node: any) => {
+    if (observer.current) {
+      observer.current.disconnect();
+    }
 
-  //   if (node) {
-  //     observer.current.observe(node);
-  //   }
-  // }, [dispatch]);
+    observer.current = new IntersectionObserver((entries) => {
+      // проверяем, виден ли последний элемент на экране
+      if (entries[0].isIntersecting) {
+        dispatch(addCompanies());
+      }
+    });
+
+    if (node) {
+      observer.current.observe(node);
+    }
+  }, [dispatch]);
 
   const companiesRowTable = useMemo(() => {
     return companies.map((item: ICompaniesData) => {
@@ -80,7 +84,7 @@ export const CompaniesTable = () => {
               'companies-container__item companies-container__item-checked' : 'companies-container__item'
           }
           key={item.id}
-        // ref={lastNodeRef} ref для динамической загрузки
+          ref={lastNodeRef}
         >
           <span className='companies-container__item-el'>
             <input
@@ -105,6 +109,7 @@ export const CompaniesTable = () => {
               }
               type='button'
               title='Редактировать'
+              disabled={!item.checked}
               onClick={() => onEditBtn(item.id)}
             />
             <button
@@ -130,7 +135,7 @@ export const CompaniesTable = () => {
     onEditBtn,
     onChangeCheckbox,
     showDeleteBtn,
-    // lastNodeRef
+    lastNodeRef
   ]);
 
   return (
@@ -139,7 +144,7 @@ export const CompaniesTable = () => {
         <div className='companies-container__btn-container'>
           <button
             className='companies-container__add-button'
-            onClick={() => dispatch(toogleCompanyDetailsModal(companiesDetailsState))}>
+            onClick={() => onAddCompany()}>
             <FiPlusCircle className='companies-container__icon-plus' />
             Добавить
           </button>

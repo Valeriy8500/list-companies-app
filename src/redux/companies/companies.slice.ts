@@ -1,5 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { companiesData, uploadedData } from "../../constans/constans";
+import {
+  companiesData,
+  firstUploadedData,
+  secondUploadedData,
+  thirdUploadedData
+} from "../../constans/constans";
 
 const initialState = {
   elements: companiesData,
@@ -10,7 +15,8 @@ const initialState = {
   companiesCurrId: 0,
   employeesCurrId: 0,
   companiesSelectAllState: false,
-  employeesSelectAllState: false
+  employeesSelectAllState: false,
+  elementLoadingCounter: 0
 };
 
 export const companiesSlice = createSlice({
@@ -21,7 +27,16 @@ export const companiesSlice = createSlice({
       state.elements.push(action.payload);
     },
     addCompanies(state) {
-      state.elements.push(...uploadedData);
+      if (state.elementLoadingCounter === 0) {
+        state.elements.push(...firstUploadedData);
+        state.elementLoadingCounter = state.elementLoadingCounter + 1;
+      } else if (state.elementLoadingCounter === 1) {
+        state.elements.push(...secondUploadedData);
+        state.elementLoadingCounter = state.elementLoadingCounter + 1;
+      } else if (state.elementLoadingCounter === 2) {
+        state.elements.push(...thirdUploadedData);
+        state.elementLoadingCounter = state.elementLoadingCounter + 1;
+      }
     },
     editCompany(state, action: PayloadAction<any>) {
       state.elements = state.elements.map(item =>
@@ -52,6 +67,7 @@ export const companiesSlice = createSlice({
       const currCheckEl = state.elements.filter(item => item.checked);
 
       if (currCheckEl.length === 1 && currCheckEl[0].id !== action.payload) {
+        console.log('if');
         state.companiesCurrId = currCheckEl[0].id;
       } else {
         state.companiesCurrId = action.payload;
@@ -105,9 +121,7 @@ export const companiesSlice = createSlice({
         }
       });
 
-      const employeesArrlength = state.elements.filter((i) => i.id === state.companiesCurrId)[0].employees.length
-
-      if (employeesArrlength === 0) {
+      if (state.employeesSelectAllState) {
         state.employeesSelectAllState = !state.employeesSelectAllState;
       }
     },

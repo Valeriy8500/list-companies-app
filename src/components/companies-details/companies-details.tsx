@@ -1,11 +1,11 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import { generateId } from '../../shared/shared-function';
 import { IoCloseSharp } from 'react-icons/io5';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { selectorCompanies, selectorCompaniesCurrId, selectorCompaniesDetailsState } from '../../redux/selectors';
 import { ICompaniesData } from '../../types/types';
-import './companies-details.scss';
 import { addCompany, editCompany, saveCompanyCurrId, toogleCompanyDetailsModal } from '../../redux/companies';
+import './companies-details.scss';
 
 export const CompaniesDetails = (): ReactElement => {
 
@@ -16,11 +16,12 @@ export const CompaniesDetails = (): ReactElement => {
   const currEl = companies.filter((i: ICompaniesData) => i.id === currId)[0];
 
   const [value, setValue] = useState(() => {
-    const newId = generateId(companies);
-
     if (currEl) {
+      console.log('currEl: ', currEl);
       return currEl;
     } else {
+      const newId = generateId(companies);
+
       return {
         id: newId,
         companyName: '',
@@ -31,14 +32,14 @@ export const CompaniesDetails = (): ReactElement => {
       };
     }
   });
-  const [disabled, setDisabled] = React.useState<boolean>(true);
+  const [disabled, setDisabled] = useState<boolean>(true);
 
   const onCloseCompaniesDetails = () => {
     dispatch(saveCompanyCurrId(0));
     dispatch(toogleCompanyDetailsModal(companiesDetailsState));
   };
 
-  const onEsc = React.useCallback((evt: any) => {
+  const onEsc = useCallback((evt: any) => {
     if (evt.key !== 'Escape') {
       return;
     }
@@ -46,7 +47,7 @@ export const CompaniesDetails = (): ReactElement => {
     dispatch(toogleCompanyDetailsModal(companiesDetailsState));
   }, [companiesDetailsState, dispatch]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.addEventListener('keydown', onEsc);
 
     return () => {
@@ -54,7 +55,7 @@ export const CompaniesDetails = (): ReactElement => {
     }
   }, [onEsc]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (
       value.companyName !== '' &&
       value.employeesCount !== '' &&
@@ -85,8 +86,8 @@ export const CompaniesDetails = (): ReactElement => {
       dispatch(addCompany(newEl));
     }
 
-    dispatch(toogleCompanyDetailsModal(companiesDetailsState));
     dispatch(saveCompanyCurrId(0));
+    dispatch(toogleCompanyDetailsModal(companiesDetailsState));
   };
 
   const onChangeItem = (id: string, e: React.ChangeEvent): void => {

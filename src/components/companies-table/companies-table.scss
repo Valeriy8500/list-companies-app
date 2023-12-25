@@ -130,6 +130,7 @@
           font-weight: 600;
           font-size: 20px;
           color: #353D4B;
+          opacity: 0.5;
         }
 
         .companies-container__show-btn:hover,
@@ -151,6 +152,10 @@
         .companies-container__del-btn-checked,
         .companies-container__show-btn-checked {
           background-color: #7fadf1;
+        }
+
+        .companies-container__show-btn-checked {
+          opacity: 1;
         }
       }
     }

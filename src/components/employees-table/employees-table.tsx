@@ -28,8 +28,16 @@ export const EmployeesTable = () => {
   const employeesDetailsState = useAppSelector(selectorEmployeesDetailsState);
   const employeesSelectAllState = useAppSelector(selectorEmployeesSelectAllState);
   const currCompaniesId = useAppSelector(selectorCompaniesCurrId);
-  const showDeleteBtn = companiesData.filter((i: ICompaniesData) => i.id === currCompaniesId)[0].employees
-    .filter((i: IEmployeesData) => i.checked).length;
+
+  const showDeleteBtn = useMemo(() => {
+    const currCompaniesEl = companiesData.filter((i: ICompaniesData) => i.id === currCompaniesId);
+
+    if (!currCompaniesEl.length) {
+      return null;
+    } else {
+      return currCompaniesEl[0].employees.filter((i: IEmployeesData) => i.checked).length;
+    }
+  }, [companiesData, currCompaniesId]);
 
   const onDeleteBtn = useCallback((id: number): void => {
     dispatch(toogleEmployeeConfirmModal(confirmModalState));
@@ -85,18 +93,19 @@ export const EmployeesTable = () => {
                 id={String(item.id)}
                 className={
                   item.checked ?
-                    'employees-container__show-btn far fa-edit employees-container__del-btn-checked'
+                    'employees-container__show-btn far fa-edit employees-container__show-btn-checked'
                     : 'employees-container__show-btn far fa-edit'
                 }
                 type='button'
                 title='Редактировать'
+                disabled={!item.checked}
                 onClick={() => onEditBtn(item.id)}
               />
               <button
                 id={String(item.id)}
                 className={
                   item.checked ?
-                    'employees-container__del-btn far fa-trash-alt employees-container__show-btn-checked'
+                    'employees-container__del-btn far fa-trash-alt employees-container__del-btn-checked'
                     : 'employees-container__del-btn far fa-trash-alt'
                 }
                 style={showDeleteBtn > 1 ? { opacity: '0.5' } : undefined}

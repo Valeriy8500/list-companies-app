@@ -223,7 +223,12 @@ export const companiesData: ICompaniesData[] = [
     ]
   },
   {
-    id: 11, companyName: "ООО ЭнергоСпец", employeesCount: 30, companyAddress: "Уфа, ул. Красная, д. 67", checked: false, employees: [
+    id: 11,
+    companyName: "ООО ЭнергоСпец",
+    employeesCount: 30,
+    companyAddress: "Уфа, ул. Красная, д. 67",
+    checked: false,
+    employees: [
       { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
       { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
       { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
@@ -232,7 +237,12 @@ export const companiesData: ICompaniesData[] = [
     ]
   },
   {
-    id: 12, companyName: "ОАО СтальПром", employeesCount: 13, companyAddress: "Воронеж, ул. Маяковского, д. 34", checked: false, employees: [
+    id: 12,
+    companyName: "ОАО СтальПром",
+    employeesCount: 13,
+    companyAddress: "Воронеж, ул. Маяковского, д. 34",
+    checked: false,
+    employees: [
       { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
       { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
       { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
@@ -241,7 +251,12 @@ export const companiesData: ICompaniesData[] = [
     ]
   },
   {
-    id: 13, companyName: "ЗАО ТехноГрад", employeesCount: 6, companyAddress: "Тула, ул. Советская, д. 12", checked: false, employees: [
+    id: 13,
+    companyName: "ЗАО ТехноГрад",
+    employeesCount: 6,
+    companyAddress: "Тула, ул. Советская, д. 12",
+    checked: false,
+    employees: [
       { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
       { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
       { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
@@ -250,7 +265,12 @@ export const companiesData: ICompaniesData[] = [
     ]
   },
   {
-    id: 14, companyName: "ПАО СтройХим", employeesCount: 22, companyAddress: "Краснодар, ул. Ленина, д. 56", checked: false, employees: [
+    id: 14,
+    companyName: "ПАО СтройХим",
+    employeesCount: 22,
+    companyAddress: "Краснодар, ул. Ленина, д. 56",
+    checked: false,
+    employees: [
       { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
       { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
       { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
@@ -259,7 +279,12 @@ export const companiesData: ICompaniesData[] = [
     ]
   },
   {
-    id: 15, companyName: "ООО ТехЭксперт", employeesCount: 30, companyAddress: "Сочи, ул. Гагарина, д. 34", checked: false, employees: [
+    id: 15,
+    companyName: "ООО ТехЭксперт",
+    employeesCount: 30,
+    companyAddress: "Сочи, ул. Гагарина, д. 34",
+    checked: false,
+    employees: [
       { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
       { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
       { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
@@ -268,7 +293,12 @@ export const companiesData: ICompaniesData[] = [
     ]
   },
   {
-    id: 16, companyName: "АО ЛесПром", employeesCount: 16, companyAddress: "Архангельск, ул. Пушкина, д. 78", checked: false, employees: [
+    id: 16,
+    companyName: "АО ЛесПром",
+    employeesCount: 16,
+    companyAddress: "Архангельск, ул. Пушкина, д. 78",
+    checked: false,
+    employees: [
       { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
       { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
       { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
@@ -277,7 +307,12 @@ export const companiesData: ICompaniesData[] = [
     ]
   },
   {
-    id: 17, companyName: "ООО Экострой", employeesCount: 14, companyAddress: "Саратов, ул. Профсоюзная, д. 90", checked: false, employees: [
+    id: 17,
+    companyName: "ООО Экострой",
+    employeesCount: 14,
+    companyAddress: "Саратов, ул. Профсоюзная, д. 90",
+    checked: false,
+    employees: [
       { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
       { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
       { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
@@ -286,7 +321,12 @@ export const companiesData: ICompaniesData[] = [
     ]
   },
   {
-    id: 18, companyName: "ПАО Автоэкспорт", employeesCount: 30, companyAddress: "Курск, ул. Жукова, д. 18", checked: false, employees: [
+    id: 18,
+    companyName: "ПАО Автоэкспорт",
+    employeesCount: 30,
+    companyAddress: "Курск, ул. Жукова, д. 18",
+    checked: false,
+    employees: [
       { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
       { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
       { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
@@ -295,7 +335,12 @@ export const companiesData: ICompaniesData[] = [
     ]
   },
   {
-    id: 19, companyName: "ЗАО ГеоСтрой", employeesCount: 23, companyAddress: "Иркутск, ул. Мира, д. 67", checked: false, employees: [
+    id: 19,
+    companyName: "ЗАО ГеоСтрой",
+    employeesCount: 23,
+    companyAddress: "Иркутск, ул. Мира, д. 67",
+    checked: false,
+    employees: [
       { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
       { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
       { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
@@ -304,67 +349,22 @@ export const companiesData: ICompaniesData[] = [
     ]
   },
   {
-    id: 20, companyName: "ООО ЛидерПром", employeesCount: 9, companyAddress: "Томск, ул. Кирова, д. 23", checked: false, employees: [
+    id: 20,
+    companyName: "ООО ЛидерПром",
+    employeesCount: 9,
+    companyAddress: "Томск, ул. Кирова, д. 23",
+    checked: false,
+    employees: [
       { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
       { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
       { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
       { id: 4, surname: 'Искажающий', name: 'Каин', position: 'Дизайнер', checked: false },
       { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
     ]
-  },
-  // { id: 31, companyName: "ООО СтройМех", employeesCount: 18, companyAddress: "Ульяновск, ул. Гагарина, д. 78", checked: false },
-  // { id: 32, companyName: "АО ТехноДом", employeesCount: 13, companyAddress: "Брянск, ул. Красная, д. 90", checked: false },
-  // { id: 33, companyName: "ООО ЭнергоПром", employeesCount: 20, companyAddress: "Магнитогорск, ул. Профсоюзная, д. 5", checked: false },
-  // { id: 34, companyName: "АО ТекстильМастер", employeesCount: 27, companyAddress: "Таганрог, ул. Гагарина, д. 18", checked: false },
-  // { id: 35, companyName: "ООО ТрансБизнес", employeesCount: 10, companyAddress: "Владивосток, ул. Ленина, д. 67", checked: false },
-  // { id: 36, companyName: "ЗАО ЭкоСтрой", employeesCount: 8, companyAddress: "Хабаровск, ул. Пушкина, д. 45", checked: false },
-  // { id: 37, companyName: "ООО Механизация", employeesCount: 15, companyAddress: "Благовещенск, ул. Гагарина, д. 12", checked: false },
-  // { id: 38, companyName: "АО ГеоПрогресс", employeesCount: 6, companyAddress: "Архангельск, ул. Советская, д. 56", checked: false },
-  // { id: 39, companyName: "ООО ЭкоСистема", employeesCount: 24, companyAddress: "Астрахань, ул. Кирова, д. 34", checked: false },
-  // { id: 40, companyName: "ОАО ПроизводСтрой", employeesCount: 11, companyAddress: "Белгород, ул. Мира, д. 78", checked: false }
-  // { id: 41, companyName: "АО ИнфоТех", employeesCount: 599, companyAddress: "Брянск, ул. Красная, д. 90" },
-  // { id: 42, companyName: "ООО ЛидерПроект", employeesCount: 178, companyAddress: "Владимир, ул. Профсоюзная, д. 5" },
-  // { id: 43, companyName: "АО ТехноИнвест", employeesCount: 457, companyAddress: "Нижний Новгород, ул. Мира, д. 45" },
-  // { id: 44, companyName: "ПАО СтройГарант", employeesCount: 823, companyAddress: "Тюмень, ул. Профсоюзная, д. 34" },
-  // { id: 45, companyName: "ЗАО ЭнергоСтрой", employeesCount: 165, companyAddress: "Ижевск, ул. Лермонтова, д. 67" },
-  // { id: 46, companyName: "ООО ГеоСпец", employeesCount: 524, companyAddress: "Тула, ул. Красная, д. 12" },
-  // { id: 47, companyName: "АО ЛидерЭкспо", employeesCount: 789, companyAddress: "Кемерово, ул. Жукова, д. 56" },
-  // { id: 48, companyName: "ПАО ПроизводСтрой", employeesCount: 234, companyAddress: "Иркутск, ул. Мира, д. 23" },
-  // { id: 49, companyName: "ООО ЭкоПром", employeesCount: 601, companyAddress: "Челябинск, ул. Советская, д. 45" },
-  // { id: 50, companyName: "АО ЭнергоТех", employeesCount: 378, companyAddress: "Ярославль, ул. Кирова, д. 34" },
-  // { id: 51, companyName: "ООО ПроизводТех", employeesCount: 942, companyAddress: "Барнаул, ул. Профсоюзная, д. 56" },
-  // { id: 52, companyName: "ЗАО ЭнергоСтрой", employeesCount: 189, companyAddress: "Ульяновск, ул. Гагарина, д. 78" },
-  // { id: 53, companyName: "ООО ТехМеханика", employeesCount: 576, companyAddress: "Брянск, ул. Красная, д. 90" },
-  // { id: 54, companyName: "АО ТехноМонтаж", employeesCount: 320, companyAddress: "Магнитогорск, ул. Профсоюзная, д. 5" },
-  // { id: 55, companyName: "ООО ЭнергоПромышленность", employeesCount: 457, companyAddress: "Таганрог, ул. Гагарина, д. 18" },
-  // { id: 56, companyName: "ПАО Автоэкспорт", employeesCount: 652, companyAddress: "Владивосток, ул. Ленина, д. 67" },
-  // { id: 57, companyName: "ЗАО ЭкоСтрой", employeesCount: 814, companyAddress: "Хабаровск, ул. Пушкина, д. 45" },
-  // { id: 58, companyName: "ООО Механизация", employeesCount: 245, companyAddress: "Благовещенск, ул. Гагарина, д. 12" },
-  // { id: 59, companyName: "АО ГеоПрогресс", employeesCount: 491, companyAddress: "Архангельск, ул. Советская, д." },
-  // { id: 60, companyName: "ООО ЭкоСтройГрупп", employeesCount: 376, companyAddress: "Тобольск, ул. Лесная, д. 23" },
-  // { id: 61, companyName: "АО ЛидерПром", employeesCount: 582, companyAddress: "Каменск-Уральский, ул. Заводская, д. 45" },
-  // { id: 62, companyName: "ООО ТехноСтандарт", employeesCount: 274, companyAddress: "Ставрополь, ул. Строительная, д. 12" },
-  // { id: 63, companyName: "ЗАО МеталлИнвест", employeesCount: 499, companyAddress: "Тверь, ул. Мельничная, д. 56" },
-  // { id: 64, companyName: "ОАО ГазСтандарт", employeesCount: 711, companyAddress: "Ишим, ул. Промышленная, д. 34" },
-  // { id: 65, companyName: "ПАО ЭлектроПром", employeesCount: 156, companyAddress: "Новочеркасск, ул. Электростанционная, д. 67" },
-  // { id: 66, companyName: "ООО ПромТекстиль", employeesCount: 623, companyAddress: "Череповец, ул. Текстильная, д. 78" },
-  // { id: 67, companyName: "АО ТехноПромстрой", employeesCount: 458, companyAddress: "Липецк, ул. Промышленная, д. 5" },
-  // { id: 68, companyName: "ЗАО БизнесТранс", employeesCount: 842, companyAddress: "Тамбов, ул. Бизнес-центральная, д. 18" },
-  // { id: 69, companyName: "ПАО НефтьПром", employeesCount: 213, companyAddress: "Орёл, ул. Производственная, д. 90" },
-  // { id: 70, companyName: "ООО АгроТех", employeesCount: 599, companyAddress: "Ульяновск, ул. Технологическая, д. 23" },
-  // { id: 71, companyName: "АО ПромСтройИнвест", employeesCount: 767, companyAddress: "Петропавловск-Камчатский, ул. Инвестиционная, д. 45" },
-  // { id: 72, companyName: "ООО ГеофизТех", employeesCount: 324, companyAddress: "Мурманск, ул. Геофизическая, д. 12" },
-  // { id: 73, companyName: "АО ТехноКомплект", employeesCount: 577, companyAddress: "Сыктывкар, ул. Комплектующая, д. 56" },
-  // { id: 74, companyName: "ООО СтандартЭнерго", employeesCount: 439, companyAddress: "Таганрог, ул. Энергетическая, д. 34" },
-  // { id: 75, companyName: "ЗАО ПромТранспорт", employeesCount: 684, companyAddress: "Северодвинск, ул. Транспортная, д. 67" },
-  // { id: 76, companyName: "ОАО ЭнергоПромСтрой", employeesCount: 175, companyAddress: "Волжский, ул. Энергостроительная, д. 23" },
-  // { id: 77, companyName: "ПАО МеталлСтандарт", employeesCount: 520, companyAddress: "Армавир, ул. Стандартная, д. 45" },
-  // { id: 78, companyName: "ООО ПромЭнерго", employeesCount: 789, companyAddress: "Тула, ул. Энергетическая, д. 12" },
-  // { id: 79, companyName: "АО ТехноЭнергоСтрой", employeesCount: 328, companyAddress: "Смоленск, ул. Энергостроительная, д. 56" },
-  // { id: 80, companyName: "ЗАО ЛидерСнаб", employeesCount: 601, companyAddress: "Тюмень, ул. Снабженческая, д. 34" }
+  }
 ];
 
-export const uploadedData: ICompaniesData[] = [
+export const firstUploadedData: ICompaniesData[] = [
   {
     id: 21, companyName: "АО МеталлГарант", employeesCount: 28, companyAddress: "Тверь, ул. Гагарина, д. 56", checked: false, employees: [
       { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
@@ -455,4 +455,306 @@ export const uploadedData: ICompaniesData[] = [
       { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
     ]
   },
+];
+
+export const secondUploadedData: ICompaniesData[] = [
+  {
+    id: 31,
+    companyName: "ПАО Металлург",
+    employeesCount: 13,
+    companyAddress: "Уфа, ул. Октябрьская, д. 67",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Шупашка', name: 'Мирача', position: 'Программист', checked: false },
+      { id: 2, surname: 'Чиркова', name: 'Эля', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Клычкина', name: 'Милаза', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Чиркова', name: 'Залина', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Трошкина', name: 'Светана', position: 'Тестировщик', checked: false },
+      { id: 6, surname: 'Козлова', name: 'Айгуль', position: 'Аналитик', checked: false },
+      { id: 7, surname: 'Мурзакова', name: 'Гузель', position: 'Программист', checked: false },
+      { id: 8, surname: 'Шемякина', name: 'Саргын', position: 'Менеджер', checked: false },
+      { id: 9, surname: 'Тараскина', name: 'Чулпан', position: 'Бухгалтер', checked: false },
+      { id: 10, surname: 'Баталова', name: 'Марьяна', position: 'Дизайнер', checked: false },
+      { id: 11, surname: 'Алкишина', name: 'Эрмела', position: 'Тестировщик', checked: false },
+      { id: 12, surname: 'Шакирзянова', name: 'Гульнара', position: 'Аналитик', checked: false },
+      { id: 13, surname: 'Шурпанова', name: 'Лия', position: 'Программист', checked: false },
+    ]
+  },
+  {
+    id: 32,
+    companyName: "ООО ЭнергоСпец",
+    employeesCount: 30,
+    companyAddress: "Уфа, ул. Красная, д. 67",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
+      { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Искажающий', name: 'Каин', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
+    ]
+  },
+  {
+    id: 33,
+    companyName: "ОАО СтальПром",
+    employeesCount: 13,
+    companyAddress: "Воронеж, ул. Маяковского, д. 34",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
+      { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Искажающий', name: 'Каин', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
+    ]
+  },
+  {
+    id: 34,
+    companyName: "ЗАО ТехноГрад",
+    employeesCount: 6,
+    companyAddress: "Тула, ул. Советская, д. 12",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
+      { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Искажающий', name: 'Каин', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
+    ]
+  },
+  {
+    id: 35,
+    companyName: "ПАО СтройХим",
+    employeesCount: 22,
+    companyAddress: "Краснодар, ул. Ленина, д. 56",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
+      { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Искажающий', name: 'Каин', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
+    ]
+  },
+  {
+    id: 36,
+    companyName: "ООО ТехЭксперт",
+    employeesCount: 30,
+    companyAddress: "Сочи, ул. Гагарина, д. 34",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
+      { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Искажающий', name: 'Каин', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
+    ]
+  },
+  {
+    id: 37,
+    companyName: "АО ЛесПром",
+    employeesCount: 16,
+    companyAddress: "Архангельск, ул. Пушкина, д. 78",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
+      { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Искажающий', name: 'Каин', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
+    ]
+  },
+  {
+    id: 38,
+    companyName: "ООО Экострой",
+    employeesCount: 14,
+    companyAddress: "Саратов, ул. Профсоюзная, д. 90",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
+      { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Искажающий', name: 'Каин', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
+    ]
+  },
+  {
+    id: 39,
+    companyName: "ПАО Автоэкспорт",
+    employeesCount: 30,
+    companyAddress: "Курск, ул. Жукова, д. 18",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
+      { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Искажающий', name: 'Каин', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
+    ]
+  },
+  {
+    id: 40,
+    companyName: "ЗАО ГеоСтрой",
+    employeesCount: 23,
+    companyAddress: "Иркутск, ул. Мира, д. 67",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
+      { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Искажающий', name: 'Каин', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
+    ]
+  }
+];
+
+export const thirdUploadedData: ICompaniesData[] = [
+  {
+    id: 41,
+    companyName: "ПАО Металлург",
+    employeesCount: 13,
+    companyAddress: "Уфа, ул. Октябрьская, д. 67",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Шупашка', name: 'Мирача', position: 'Программист', checked: false },
+      { id: 2, surname: 'Чиркова', name: 'Эля', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Клычкина', name: 'Милаза', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Чиркова', name: 'Залина', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Трошкина', name: 'Светана', position: 'Тестировщик', checked: false },
+      { id: 6, surname: 'Козлова', name: 'Айгуль', position: 'Аналитик', checked: false },
+      { id: 7, surname: 'Мурзакова', name: 'Гузель', position: 'Программист', checked: false },
+      { id: 8, surname: 'Шемякина', name: 'Саргын', position: 'Менеджер', checked: false },
+      { id: 9, surname: 'Тараскина', name: 'Чулпан', position: 'Бухгалтер', checked: false },
+      { id: 10, surname: 'Баталова', name: 'Марьяна', position: 'Дизайнер', checked: false },
+      { id: 11, surname: 'Алкишина', name: 'Эрмела', position: 'Тестировщик', checked: false },
+      { id: 12, surname: 'Шакирзянова', name: 'Гульнара', position: 'Аналитик', checked: false },
+      { id: 13, surname: 'Шурпанова', name: 'Лия', position: 'Программист', checked: false },
+    ]
+  },
+  {
+    id: 42,
+    companyName: "ООО ЭнергоСпец",
+    employeesCount: 30,
+    companyAddress: "Уфа, ул. Красная, д. 67",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
+      { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Искажающий', name: 'Каин', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
+    ]
+  },
+  {
+    id: 43,
+    companyName: "ОАО СтальПром",
+    employeesCount: 13,
+    companyAddress: "Воронеж, ул. Маяковского, д. 34",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
+      { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Искажающий', name: 'Каин', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
+    ]
+  },
+  {
+    id: 44,
+    companyName: "ЗАО ТехноГрад",
+    employeesCount: 6,
+    companyAddress: "Тула, ул. Советская, д. 12",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
+      { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Искажающий', name: 'Каин', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
+    ]
+  },
+  {
+    id: 45,
+    companyName: "ПАО СтройХим",
+    employeesCount: 22,
+    companyAddress: "Краснодар, ул. Ленина, д. 56",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
+      { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Искажающий', name: 'Каин', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
+    ]
+  },
+  {
+    id: 46,
+    companyName: "ООО ТехЭксперт",
+    employeesCount: 30,
+    companyAddress: "Сочи, ул. Гагарина, д. 34",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
+      { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Искажающий', name: 'Каин', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
+    ]
+  },
+  {
+    id: 47,
+    companyName: "АО ЛесПром",
+    employeesCount: 16,
+    companyAddress: "Архангельск, ул. Пушкина, д. 78",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
+      { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Искажающий', name: 'Каин', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
+    ]
+  },
+  {
+    id: 48,
+    companyName: "ООО Экострой",
+    employeesCount: 14,
+    companyAddress: "Саратов, ул. Профсоюзная, д. 90",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
+      { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Искажающий', name: 'Каин', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
+    ]
+  },
+  {
+    id: 49,
+    companyName: "ПАО Автоэкспорт",
+    employeesCount: 30,
+    companyAddress: "Курск, ул. Жукова, д. 18",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
+      { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Искажающий', name: 'Каин', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
+    ]
+  },
+  {
+    id: 50,
+    companyName: "ЗАО ГеоСтрой",
+    employeesCount: 23,
+    companyAddress: "Иркутск, ул. Мира, д. 67",
+    checked: false,
+    employees: [
+      { id: 1, surname: 'Стальной', name: 'Электрон', position: 'Программист', checked: false },
+      { id: 2, surname: 'Молниеносный', name: 'Харун', position: 'Бухгалтер', checked: false },
+      { id: 3, surname: 'Гиперион', name: 'Лукас', position: 'Менеджер', checked: false },
+      { id: 4, surname: 'Искажающий', name: 'Каин', position: 'Дизайнер', checked: false },
+      { id: 5, surname: 'Временной', name: 'Аркадий', position: 'Тестировщик', checked: false },
+    ]
+  }
 ];

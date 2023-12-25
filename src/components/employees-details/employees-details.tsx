@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import { generateId } from '../../shared/shared-function';
 import { IoCloseSharp } from 'react-icons/io5';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
@@ -33,14 +33,14 @@ export const EmployeesDetails = (): ReactElement => {
       };
     }
   });
-  const [disabled, setDisabled] = React.useState<boolean>(true);
+  const [disabled, setDisabled] = useState<boolean>(true);
 
   const onCloseCompaniesDetails = () => {
     dispatch(saveEmployeeCurrId(0));
     dispatch(toogleEmployeeDetailsModal(employeesDetailsState));
   };
 
-  const onEsc = React.useCallback((evt: any) => {
+  const onEsc = useCallback((evt: any) => {
     if (evt.key !== 'Escape') {
       return;
     }
@@ -48,7 +48,7 @@ export const EmployeesDetails = (): ReactElement => {
     dispatch(toogleEmployeeDetailsModal(employeesDetailsState));
   }, [employeesDetailsState, dispatch]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.addEventListener('keydown', onEsc);
 
     return () => {
@@ -56,7 +56,7 @@ export const EmployeesDetails = (): ReactElement => {
     }
   }, [onEsc]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (
       value.surname !== '' &&
       value.name !== '' &&

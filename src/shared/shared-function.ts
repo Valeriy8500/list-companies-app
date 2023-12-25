@@ -1,12 +1,17 @@
 import { ICompaniesData, IEmployeesData } from "../types/types";
 
-export function generateId(arr: ICompaniesData[] | IEmployeesData[]): number {
-  let newId = 0;
+let id = 0;
 
+export function generateId(arr: ICompaniesData[] | IEmployeesData[]): number {
   if (arr.length) {
-    newId = arr[arr.length - 1].id + 1;
+    if (id === 0) {
+      id = 51;
+      return 51;
+    } else {
+      id++
+      return id++;
+    }
   } else {
-    newId = 1;
+    return 1;
   }
-  return newId;
 }
