@@ -1,6 +1,6 @@
 import { ICompaniesData, IEmployeesData } from "../types/types";
 
-let id = 0;
+let id: number = 0;
 
 export function generateId(arr: ICompaniesData[] | IEmployeesData[]): number {
   if (arr.length) {

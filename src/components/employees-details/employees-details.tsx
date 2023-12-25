@@ -4,8 +4,8 @@ import { IoCloseSharp } from 'react-icons/io5';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { selectorCompanies, selectorCompaniesCurrId, selectorEmployeesCurrId, selectorEmployeesDetailsState } from '../../redux/selectors';
 import { ICompaniesData, IEmployeesData } from '../../types/types';
-import './employees-details.scss';
 import { addEmployee, editEmployee, saveEmployeeCurrId, toogleEmployeeDetailsModal } from '../../redux/companies';
+import './employees-details.scss';
 
 export const EmployeesDetails = (): ReactElement => {
 
@@ -17,7 +17,7 @@ export const EmployeesDetails = (): ReactElement => {
   const currEmployeeEl = companies.filter((i: ICompaniesData) => i.id === currCompaniesId)[0].employees
     .filter((i: IEmployeesData) => i.id === currEmployeeId)[0];
 
-  const [value, setValue] = useState(() => {
+  const [value, setValue] = useState<IEmployeesData>(() => {
     const currEmployeesArr = companies.filter((i: ICompaniesData) => i.id === currCompaniesId)[0].employees;
     const newId = generateId(currEmployeesArr);
 
@@ -35,12 +35,12 @@ export const EmployeesDetails = (): ReactElement => {
   });
   const [disabled, setDisabled] = useState<boolean>(true);
 
-  const onCloseCompaniesDetails = () => {
+  const onCloseCompaniesDetails = (): void => {
     dispatch(saveEmployeeCurrId(0));
     dispatch(toogleEmployeeDetailsModal(employeesDetailsState));
   };
 
-  const onEsc = useCallback((evt: any) => {
+  const onEsc = useCallback((evt: any): void => {
     if (evt.key !== 'Escape') {
       return;
     }

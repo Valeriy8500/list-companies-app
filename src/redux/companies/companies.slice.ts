@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { ICompaniesData, IEmployeesData, IInitialState } from "../../types/types";
 import {
   companiesData,
   firstUploadedData,
@@ -6,7 +7,7 @@ import {
   thirdUploadedData
 } from "../../constans/constans";
 
-const initialState = {
+const initialState: IInitialState = {
   elements: companiesData,
   confirmCompaniesModalState: false,
   confirmEmployeesModalState: false,
@@ -23,7 +24,7 @@ export const companiesSlice = createSlice({
   name: "companies",
   initialState,
   reducers: {
-    addCompany(state, action: PayloadAction<any>) {
+    addCompany(state, action: PayloadAction<ICompaniesData>) {
       state.elements.push(action.payload);
     },
     addCompanies(state) {
@@ -38,28 +39,28 @@ export const companiesSlice = createSlice({
         state.elementLoadingCounter = state.elementLoadingCounter + 1;
       }
     },
-    editCompany(state, action: PayloadAction<any>) {
+    editCompany(state, action: PayloadAction<ICompaniesData>) {
       state.elements = state.elements.map(item =>
         item.id !== action.payload.id ? item : { ...action.payload }
       );
     },
-    deleteCompany(state, action: PayloadAction<any>) {
+    deleteCompany(state, action: PayloadAction<number>) {
       state.elements = state.elements.filter(item => item.id !== action.payload);
 
       if (state.elements.length === 0) {
         state.companiesSelectAllState = !state.companiesSelectAllState;
       }
     },
-    toogleCompanyConfirmModal(state) {
+    toogleCompanyConfirmModal(state, action: PayloadAction<boolean>) {
       state.confirmCompaniesModalState = !state.confirmCompaniesModalState;
     },
-    toogleCompanyDetailsModal(state) {
+    toogleCompanyDetailsModal(state, action: PayloadAction<boolean>) {
       state.companiesDetailsState = !state.companiesDetailsState;
     },
-    saveCompanyCurrId(state, action: PayloadAction<any>) {
+    saveCompanyCurrId(state, action: PayloadAction<number>) {
       state.companiesCurrId = action.payload;
     },
-    toogleCompanyCheckBox(state, action: PayloadAction<any>) {
+    toogleCompanyCheckBox(state, action: PayloadAction<number>) {
       state.elements = state.elements.map(item =>
         item.id === action.payload ? { ...item, checked: !item.checked } : item
       );
@@ -67,7 +68,6 @@ export const companiesSlice = createSlice({
       const currCheckEl = state.elements.filter(item => item.checked);
 
       if (currCheckEl.length === 1 && currCheckEl[0].id !== action.payload) {
-        console.log('if');
         state.companiesCurrId = currCheckEl[0].id;
       } else {
         state.companiesCurrId = action.payload;
@@ -87,7 +87,7 @@ export const companiesSlice = createSlice({
         state.companiesSelectAllState = !state.companiesSelectAllState;
       }
     },
-    addEmployee(state, action: PayloadAction<any>) {
+    addEmployee(state, action: PayloadAction<IEmployeesData>) {
       state.elements = state.elements.map(item => {
         if (item.id === state.companiesCurrId) {
           const currEmployeesArr = [...item.employees, action.payload];
@@ -97,7 +97,7 @@ export const companiesSlice = createSlice({
         }
       });
     },
-    editEmployee(state, action: PayloadAction<any>) {
+    editEmployee(state, action: PayloadAction<IEmployeesData>) {
       state.elements = state.elements.map(item => {
         if (item.id === state.companiesCurrId) {
           const editEmployees = item.employees.map(i =>
@@ -109,7 +109,7 @@ export const companiesSlice = createSlice({
         }
       });
     },
-    deleteEmployee(state, action: PayloadAction<any>) {
+    deleteEmployee(state, action: PayloadAction<number>) {
       state.elements = state.elements.map(item => {
         if (item.id === state.companiesCurrId) {
           const newEmployeesArr = item.employees.filter(i =>
@@ -125,16 +125,16 @@ export const companiesSlice = createSlice({
         state.employeesSelectAllState = !state.employeesSelectAllState;
       }
     },
-    toogleEmployeeConfirmModal(state) {
+    toogleEmployeeConfirmModal(state, action: PayloadAction<boolean>) {
       state.confirmEmployeesModalState = !state.confirmEmployeesModalState;
     },
-    toogleEmployeeDetailsModal(state) {
+    toogleEmployeeDetailsModal(state, action: PayloadAction<boolean>) {
       state.employeesDetailsState = !state.employeesDetailsState;
     },
-    saveEmployeeCurrId(state, action: PayloadAction<any>) {
+    saveEmployeeCurrId(state, action: PayloadAction<number>) {
       state.employeesCurrId = action.payload;
     },
-    toogleEmployeeCheckBox(state, action: PayloadAction<any>) {
+    toogleEmployeeCheckBox(state, action: PayloadAction<number>) {
       state.elements = state.elements.map(item => {
         if (item.id === state.companiesCurrId) {
           const updatedEmployees = item.employees.map(i =>

@@ -15,9 +15,8 @@ export const CompaniesDetails = (): ReactElement => {
   const companies = useAppSelector(selectorCompanies);
   const currEl = companies.filter((i: ICompaniesData) => i.id === currId)[0];
 
-  const [value, setValue] = useState(() => {
+  const [value, setValue] = useState<ICompaniesData>(() => {
     if (currEl) {
-      console.log('currEl: ', currEl);
       return currEl;
     } else {
       const newId = generateId(companies);
@@ -34,12 +33,12 @@ export const CompaniesDetails = (): ReactElement => {
   });
   const [disabled, setDisabled] = useState<boolean>(true);
 
-  const onCloseCompaniesDetails = () => {
+  const onCloseCompaniesDetails = (): void => {
     dispatch(saveCompanyCurrId(0));
     dispatch(toogleCompanyDetailsModal(companiesDetailsState));
   };
 
-  const onEsc = useCallback((evt: any) => {
+  const onEsc = useCallback((evt: any): void => {
     if (evt.key !== 'Escape') {
       return;
     }

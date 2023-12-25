@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { ReactElement, useCallback, useMemo } from 'react';
 import { FiPlusCircle } from "react-icons/fi";
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { ICompaniesData, IEmployeesData } from '../../types/types';
@@ -21,7 +21,7 @@ import {
 } from '../../redux/selectors';
 import './employees-table.scss';
 
-export const EmployeesTable = () => {
+export const EmployeesTable = (): ReactElement => {
   const dispatch = useAppDispatch();
   const companiesData = useAppSelector(selectorCompanies);
   const confirmModalState = useAppSelector(selectorConfirmEmployeesModalState);
@@ -29,11 +29,11 @@ export const EmployeesTable = () => {
   const employeesSelectAllState = useAppSelector(selectorEmployeesSelectAllState);
   const currCompaniesId = useAppSelector(selectorCompaniesCurrId);
 
-  const showDeleteBtn = useMemo(() => {
+  const showDeleteBtn = useMemo((): number => {
     const currCompaniesEl = companiesData.filter((i: ICompaniesData) => i.id === currCompaniesId);
 
     if (!currCompaniesEl.length) {
-      return null;
+      return 0;
     } else {
       return currCompaniesEl[0].employees.filter((i: IEmployeesData) => i.checked).length;
     }
@@ -44,7 +44,7 @@ export const EmployeesTable = () => {
     dispatch(saveEmployeeCurrId(id));
   }, [confirmModalState, dispatch]);
 
-  const onDeleteSelectEmployees = () => {
+  const onDeleteSelectEmployees = (): void => {
     dispatch(toogleEmployeeConfirmModal(confirmModalState));
   };
 
@@ -53,12 +53,12 @@ export const EmployeesTable = () => {
     dispatch(saveEmployeeCurrId(id));
   }, [employeesDetailsState, dispatch]);
 
-  const onChangeCheckbox = useCallback((id: number) => {
+  const onChangeCheckbox = useCallback((id: number): void => {
     dispatch(toogleEmployeeCheckBox(id));
     dispatch(saveEmployeeCurrId(id));
   }, [dispatch]);
 
-  const onSelectAll = () => {
+  const onSelectAll = (): void => {
     dispatch(selectAllEmployees());
   };
 

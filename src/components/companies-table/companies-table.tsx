@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef } from 'react';
+import { ReactElement, useCallback, useMemo, useRef } from 'react';
 import { FiPlusCircle } from "react-icons/fi";
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { ICompaniesData } from '../../types/types';
@@ -21,8 +21,10 @@ import {
 } from '../../redux/companies';
 import './companies-table.scss';
 
-export const CompaniesTable = () => {
-  const observer: any = useRef();
+type IntersectionObserverType = IntersectionObserver | null;
+
+export const CompaniesTable = (): ReactElement => {
+  const observer = useRef<IntersectionObserverType>();
 
   const dispatch = useAppDispatch();
   const companies = useAppSelector(selectorCompanies);
@@ -36,7 +38,7 @@ export const CompaniesTable = () => {
     dispatch(saveCompanyCurrId(id));
   }, [confirmModalState, dispatch]);
 
-  const onDeleteSelectCompanies = () => {
+  const onDeleteSelectCompanies = (): void => {
     dispatch(toogleCompanyConfirmModal(confirmModalState));
   };
 
@@ -45,20 +47,20 @@ export const CompaniesTable = () => {
     dispatch(saveCompanyCurrId(id));
   }, [companiesDetailsState, dispatch]);
 
-  const onChangeCheckbox = useCallback((id: number) => {
+  const onChangeCheckbox = useCallback((id: number): void => {
     dispatch(toogleCompanyCheckBox(id));
   }, [dispatch]);
 
-  const onSelectAll = () => {
+  const onSelectAll = (): void => {
     dispatch(selectAllCompanies());
   };
 
-  const onAddCompany = () => {
+  const onAddCompany = (): void => {
     dispatch(saveCompanyCurrId(0));
     dispatch(toogleCompanyDetailsModal(companiesDetailsState));
   };
 
-  const lastNodeRef = useCallback((node: any) => {
+  const lastNodeRef = useCallback((node: HTMLElement | null) => {
     if (observer.current) {
       observer.current.disconnect();
     }

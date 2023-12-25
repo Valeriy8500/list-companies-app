@@ -67,7 +67,7 @@ export const ConfirmModal = (): ReactElement => {
     companies
   ]);
 
-  const onCloseConfirmModal = useCallback(() => {
+  const onCloseConfirmModal = useCallback((): void => {
     if (confirmCompaniesModalState) {
       dispatch(saveCompanyCurrId(0));
       dispatch(toogleCompanyConfirmModal(confirmCompaniesModalState));
@@ -83,7 +83,7 @@ export const ConfirmModal = (): ReactElement => {
     dispatch
   ]);
 
-  const onEsc = useCallback((e: any) => {
+  const onEsc = useCallback((e: any): void => {
     if (e.key !== 'Escape') {
       return;
     }

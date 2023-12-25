@@ -1,7 +1,7 @@
-import React from 'react';
+import { ReactElement } from 'react';
 import './header.scss';
 
-export const Header = () => {
+export const Header = (): ReactElement => {
   return (
     <div className="header"></div>
   );
